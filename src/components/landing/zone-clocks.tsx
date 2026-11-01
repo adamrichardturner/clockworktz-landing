@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 /**
  * Live clocks for zones that break naive timezone code. This page uses the
- * browser's Intl data directly, the same source as clockwork-tz's default
+ * browser's Intl data directly, the same source as clockworktz's default
  * system-intl engine.
  */
 const zones = [
@@ -30,7 +30,7 @@ export function ZoneClocks() {
   const [now, setNow] = useState<Date | null>(null)
 
   useEffect(() => {
-    // Tick on whole seconds, like clockwork-tz's onTick, so clocks never drift
+    // Tick on whole seconds, like clockworktz's onTick, so clocks never drift
     let timer: ReturnType<typeof setTimeout>
     const tick = () => {
       setNow(new Date())

@@ -1,7 +1,7 @@
 import { docSlugs, docsNav, getDoc } from '@/lib/docs'
 import { ogContentType, ogSize, renderDocOg } from '@/lib/og'
 
-export const alt = 'clockwork-tz documentation page'
+export const alt = 'clockworktz documentation page'
 export const size = ogSize
 export const contentType = ogContentType
 

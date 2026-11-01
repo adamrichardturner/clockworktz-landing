@@ -8,7 +8,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg/80 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
-        <Link href="/" aria-label="clockwork-tz home">
+        <Link href="/" aria-label="clockworktz home">
           <Logo />
         </Link>
         <nav aria-label="Main" className="ml-2 hidden items-center gap-5 text-sm text-fg-muted sm:flex">
@@ -28,14 +28,14 @@ export function SiteHeader() {
           </Link>
           <a
             href={site.npm}
-            aria-label="clockwork-tz on npm"
+            aria-label="clockworktz on npm"
             className="hidden size-8 min-[400px]:grid place-items-center rounded-full text-fg-muted hover:text-fg"
           >
             <NpmIcon className="size-4" />
           </a>
           <a
             href={site.repo}
-            aria-label="clockwork-tz on GitHub"
+            aria-label="clockworktz on GitHub"
             className="grid size-8 place-items-center rounded-full text-fg-muted hover:text-fg"
           >
             <GitHubIcon className="size-4" />

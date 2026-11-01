@@ -1,6 +1,6 @@
 # Errors
 
-Everything clockwork-tz throws is a `TimezoneError`. Two subclasses report DST problems when you ask for them with `disambiguation: 'reject'`.
+Everything clockworktz throws is a `TimezoneError`. Two subclasses report DST problems when you ask for them with `disambiguation: 'reject'`.
 
 ```text
 Error
@@ -16,7 +16,7 @@ Error
 | `AmbiguousTimeError` | `disambiguation: 'reject'` and the wall time falls in an overlap                             |
 
 ```ts
-import { interpretLocal, TimezoneError, InvalidTimeError, AmbiguousTimeError } from 'clockwork-tz'
+import { interpretLocal, TimezoneError, InvalidTimeError, AmbiguousTimeError } from 'clockworktz'
 
 function toInstant(wall: string, zone: string) {
   try {
@@ -31,7 +31,7 @@ function toInstant(wall: string, zone: string) {
     if (error instanceof TimezoneError) {
       return { problem: error.message }
     }
-    throw error // not from clockwork-tz
+    throw error // not from clockworktz
   }
 }
 ```

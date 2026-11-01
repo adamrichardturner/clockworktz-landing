@@ -1,13 +1,13 @@
 # Engines & tzdb data
 
-Every timezone calculation in clockwork-tz goes through an **engine**, which answers one question: what offset, DST flag and abbreviation is in effect in this zone at this instant? Everything else (wall-time interpretation, formatting, transitions) is built on that.
+Every timezone calculation in clockworktz goes through an **engine**, which answers one question: what offset, DST flag and abbreviation is in effect in this zone at this instant? Everything else (wall-time interpretation, formatting, transitions) is built on that.
 
 There are two engines. They expose the same API and are tested against the same fixtures.
 
 |                         | `system-intl` (default)                    | `embedded-tzdb`                                        |
 | ----------------------- | ------------------------------------------ | ------------------------------------------------------ |
 | Data source             | The runtime's ICU data via `Intl`          | A compiled IANA tzdb release                           |
-| Extra bundle size       | none                                       | ~28 kB gzipped (`clockwork-tz/tzdb`)                   |
+| Extra bundle size       | none                                       | ~30 kB gzipped (`clockworktz/tzdb`)                   |
 | Same results everywhere | No: depends on the runtime's tzdb version  | Yes                                                    |
 | `isDST`                 | Derived from January and July offsets      | Exact, from the tzdb                                   |
 | Abbreviations           | What `Intl` reports, for example `+01`     | The tzdb's, for example `BST`                          |
@@ -25,7 +25,7 @@ The trade-off is that different platforms can be on different tzdb releases. Whe
 `Intl` also doesn't expose whether DST is in effect, so this engine derives `isDST` by comparing a zone's January and July offsets. That's right for almost every modern zone, but it can be wrong for years in which a zone changed its standard offset. In 2016 Venezuela moved from `-04:30` to `-04:00` permanently:
 
 ```ts
-import { getZoneInfo } from 'clockwork-tz'
+import { getZoneInfo } from 'clockworktz'
 
 getZoneInfo('2016-05-01T12:00:00Z', 'America/Caracas')
 // system-intl:   { offsetSeconds: -14400, isDST: true,  abbreviation: '-04' }
@@ -34,11 +34,11 @@ getZoneInfo('2016-05-01T12:00:00Z', 'America/Caracas')
 
 ## `embedded-tzdb`
 
-Uses a compiled IANA tzdb release for deterministic results on every platform, including exact DST flags and abbreviations, local mean time before standardization, and every transition. A snapshot ships in the `clockwork-tz/tzdb` subpath, so you only pay for it if you import it.
+Uses a compiled IANA tzdb release for deterministic results on every platform, including exact DST flags and abbreviations, local mean time before standardization, and every transition. A snapshot ships in the `clockworktz/tzdb` subpath, so you only pay for it if you import it.
 
 ```ts
-import { initClockworkTZ, tzdbVersion, fromUTC } from 'clockwork-tz'
-import { tzdb } from 'clockwork-tz/tzdb'
+import { initClockworkTZ, tzdbVersion, fromUTC } from 'clockworktz'
+import { tzdb } from 'clockworktz/tzdb'
 
 await initClockworkTZ({ engine: 'embedded-tzdb', data: tzdb })
 
@@ -60,7 +60,7 @@ Call `initClockworkTZ` once, at startup, before anything else uses the library. 
 ### Comparing results
 
 ```ts
-import { format, getZoneCountries } from 'clockwork-tz'
+import { format, getZoneCountries } from 'clockworktz'
 
 format('2024-07-05T09:05:07Z', 'Europe/London', 'zzz zzzz')
 // system-intl:   '+01 British Summer Time'
@@ -76,13 +76,13 @@ getZoneCountries('Europe/Zurich')
 IANA publishes several tzdb releases a year, sometimes at short notice. To pick them up without releasing your app again, point the engine at the signed manifest:
 
 ```ts
-import { initClockworkTZ, onDataUpdate, DEFAULT_MANIFEST_URL } from 'clockwork-tz'
-import { tzdb } from 'clockwork-tz/tzdb'
+import { initClockworkTZ, onDataUpdate, DEFAULT_MANIFEST_URL } from 'clockworktz'
+import { tzdb } from 'clockworktz/tzdb'
 
 await initClockworkTZ({
   engine: 'embedded-tzdb',
   data: tzdb, // used immediately and whenever an update can't be verified
-  manifestURL: DEFAULT_MANIFEST_URL, // jsDelivr, from the clockwork-tz-data package
+  manifestURL: DEFAULT_MANIFEST_URL, // jsDelivr, from the clockworktz-data package
   autoUpdateIntervalMs: 24 * 60 * 60 * 1000, // 0 disables periodic checks
 })
 
@@ -91,7 +91,7 @@ onDataUpdate(version => {
 })
 ```
 
-`DEFAULT_MANIFEST_URL` is `https://cdn.jsdelivr.net/npm/clockwork-tz-data@1/manifest.json`. The `clockwork-tz-data` package is rebuilt and signed by a scheduled workflow whenever IANA publishes a release.
+`DEFAULT_MANIFEST_URL` is `https://cdn.jsdelivr.net/npm/clockworktz-data@1/manifest.json`. The `clockworktz-data` package is rebuilt and signed by a scheduled workflow whenever IANA publishes a release.
 
 An update is only applied when **all** of these hold:
 
@@ -110,7 +110,7 @@ Anything else keeps the current data. `initClockworkTZ` never rejects because of
 ### Manual refresh and status
 
 ```ts
-import { refreshTimezoneData, getStatus, dispose } from 'clockwork-tz'
+import { refreshTimezoneData, getStatus, dispose } from 'clockworktz'
 
 await refreshTimezoneData() // true if newer data was loaded
 
@@ -142,7 +142,7 @@ See [Security & signing](./security.md) for the manifest format and what's signe
 | Option                 | Type                                 | Default          | Description                                                        |
 | ---------------------- | ------------------------------------ | ---------------- | ------------------------------------------------------------------ |
 | `engine`               | `'system-intl' \| 'embedded-tzdb'`   | `'system-intl'`  | Engine to use                                                      |
-| `data`                 | `unknown`                            |                  | tzdb data for `embedded-tzdb`, usually `tzdb` from `clockwork-tz/tzdb` |
+| `data`                 | `unknown`                            |                  | tzdb data for `embedded-tzdb`, usually `tzdb` from `clockworktz/tzdb` |
 | `manifestURL`          | `string`                             |                  | Signed manifest to load and keep fresh                             |
 | `publicKey`            | `string`                             | project key      | Base64 raw Ed25519 public key used to verify manifests             |
 | `autoUpdateIntervalMs` | `number`                             | `86400000` (24h) | How often to check the manifest; `0` disables periodic checks      |

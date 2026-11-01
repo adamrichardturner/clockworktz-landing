@@ -3,15 +3,15 @@
 ## Install
 
 ```bash
-npm install clockwork-tz
+npm install clockworktz
 ```
 
 Or with another package manager:
 
 ```bash
-pnpm add clockwork-tz
-yarn add clockwork-tz
-bun add clockwork-tz
+pnpm add clockworktz
+yarn add clockworktz
+bun add clockworktz
 ```
 
 **Requirements:** Node.js 20 or later, or any browser with `Intl.DateTimeFormat` time zone support. There are no runtime dependencies.
@@ -22,20 +22,20 @@ The package ships ES modules and CommonJS with TypeScript types for both.
 
 ```ts
 // ESM
-import { fromUTC, convert, format } from 'clockwork-tz'
+import { fromUTC, convert, format } from 'clockworktz'
 
 // CommonJS
-const { fromUTC, convert, format } = require('clockwork-tz')
+const { fromUTC, convert, format } = require('clockworktz')
 ```
 
 There are two entry points:
 
 | Import             | What it contains                                              | Size (gzipped) |
 | ------------------ | ------------------------------------------------------------- | -------------- |
-| `clockwork-tz`     | The whole API, using the platform's `Intl` data by default    | ~19 kB         |
-| `clockwork-tz/tzdb`| A compiled IANA tzdb snapshot for the `embedded-tzdb` engine  | ~28 kB         |
+| `clockworktz`     | The whole API, using the platform's `Intl` data by default    | ~21 kB         |
+| `clockworktz/tzdb`| A compiled IANA tzdb snapshot for the `embedded-tzdb` engine  | ~30 kB         |
 
-The package is marked `sideEffects: false`, so bundlers drop anything you don't import. The tzdb snapshot is only included if you import `clockwork-tz/tzdb`.
+The package is marked `sideEffects: false`, so bundlers drop anything you don't import. The tzdb snapshot is only included if you import `clockworktz/tzdb`.
 
 ## Quick start
 
@@ -44,7 +44,7 @@ No setup is needed: the default `system-intl` engine is ready as soon as you imp
 ### Show an instant in a zone
 
 ```ts
-import { fromUTC } from 'clockwork-tz'
+import { fromUTC } from 'clockworktz'
 
 fromUTC('2024-07-15T14:00:00Z', 'Australia/Lord_Howe')
 // {
@@ -63,7 +63,7 @@ fromUTC('2024-07-15T14:00:00Z', 'Australia/Lord_Howe')
 A string without an offset is wall-clock time in the source zone:
 
 ```ts
-import { convert } from 'clockwork-tz'
+import { convert } from 'clockworktz'
 
 convert('2024-07-15T16:30:00', 'Asia/Kathmandu', 'America/St_Johns').local
 // '2024-07-15 08:15:00.000'
@@ -72,7 +72,7 @@ convert('2024-07-15T16:30:00', 'Asia/Kathmandu', 'America/St_Johns').local
 ### Format
 
 ```ts
-import { format } from 'clockwork-tz'
+import { format } from 'clockworktz'
 
 format('2024-07-15T14:00:00Z', 'Pacific/Chatham', 'yyyy-MM-dd HH:mm xxx')
 // '2024-07-16 02:45 +12:45'
@@ -81,7 +81,7 @@ format('2024-07-15T14:00:00Z', 'Pacific/Chatham', 'yyyy-MM-dd HH:mm xxx')
 ### Interpret a local time that DST skipped
 
 ```ts
-import { interpretLocal } from 'clockwork-tz'
+import { interpretLocal } from 'clockworktz'
 
 // 02:30 doesn't exist in New York on 10 March 2024: it resolves to 03:30 EDT
 interpretLocal('2024-03-10T02:30:00', 'America/New_York').local
@@ -112,11 +112,11 @@ interpretLocal('2024-03-10T02:30:00', 'America/New_York').local
 
 ## Optional: pin the timezone database
 
-By default clockwork-tz uses the runtime's timezone data. To get identical results on every platform, switch to the embedded engine once at startup:
+By default clockworktz uses the runtime's timezone data. To get identical results on every platform, switch to the embedded engine once at startup:
 
 ```ts
-import { initClockworkTZ } from 'clockwork-tz'
-import { tzdb } from 'clockwork-tz/tzdb'
+import { initClockworkTZ } from 'clockworktz'
+import { tzdb } from 'clockworktz/tzdb'
 
 await initClockworkTZ({ engine: 'embedded-tzdb', data: tzdb })
 ```

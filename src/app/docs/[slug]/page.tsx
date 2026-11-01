@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps<'/docs/[slug]'>): P
   return {
     title: doc.title,
     ...pageMetadata({
-      title: `${doc.title} · clockwork-tz`,
+      title: `${doc.title} · clockworktz`,
       description: doc.description,
       path: `/docs/${slug}`,
       type: 'article',

@@ -3,7 +3,7 @@
 `listTimeZones` returns every zone the engine knows, with a label and the offset in effect at a given instant, sorted by offset and then by name. It's the building block for timezone pickers.
 
 ```ts
-import { listTimeZones } from 'clockwork-tz'
+import { listTimeZones } from 'clockworktz'
 
 listTimeZones({ country: 'AU', labelStyle: 'offset', at: '2024-07-01T00:00:00Z' }).map(z => z.label)
 // [
@@ -68,7 +68,7 @@ listTimeZones({ at: '2024-01-15T00:00:00Z' }).slice(0, 2)
 `getZoneCountries(zone)` returns the ISO 3166 codes of the countries that use a zone:
 
 ```ts
-import { getZoneCountries } from 'clockwork-tz'
+import { getZoneCountries } from 'clockworktz'
 
 getZoneCountries('Europe/Zurich')
 // embedded-tzdb: ['CH', 'DE', 'LI']
@@ -82,7 +82,7 @@ Fixed offsets and zones not tied to a country (such as `UTC`) return `[]`.
 ## Example: a grouped `<select>`
 
 ```ts
-import { listTimeZones } from 'clockwork-tz'
+import { listTimeZones } from 'clockworktz'
 
 function zoneOptions(at: Date) {
   const groups = new Map<string, { value: string; label: string }[]>()

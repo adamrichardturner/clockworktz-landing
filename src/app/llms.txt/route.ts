@@ -15,7 +15,7 @@ async function body(): Promise<string> {
       return `## ${group.title}\n\n${lines.join('\n')}`
     })
   )
-  return `# clockwork-tz\n\n> ${site.description}\n\nFull docs as Markdown: ${site.url}/llms-full.txt\n\n${sections.join('\n\n')}\n`
+  return `# clockworktz\n\n> ${site.description}\n\nFull docs as Markdown: ${site.url}/llms-full.txt\n\n${sections.join('\n\n')}\n`
 }
 
 export async function GET() {

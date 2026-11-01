@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import { site } from './site'
 
 export const keywords = [
-  'clockwork-tz',
-  'clockwork tz',
   'clockworktz',
+  'clockworktz npm',
   'timezone library',
   'javascript timezone',
   'typescript timezone',
@@ -44,7 +43,7 @@ export function pageMetadata({
     openGraph: {
       type,
       url: path,
-      siteName: 'clockwork-tz',
+      siteName: 'clockworktz',
       locale: 'en_GB',
       title,
       description,

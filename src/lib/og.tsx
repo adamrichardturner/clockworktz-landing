@@ -69,7 +69,7 @@ function Frame({ children, footer }: { children: React.ReactNode; footer: React.
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logoDataUri()} width={64} height={64} alt="" />
         <span style={{ fontFamily: 'Geist Mono', fontSize: 36, fontWeight: 500, letterSpacing: -1 }}>
-          clockwork-tz
+          clockworktz
         </span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>{children}</div>
@@ -104,7 +104,7 @@ export async function renderHomeOg() {
       <Frame
         footer={
           <>
-            <span>$ npm install clockwork-tz</span>
+            <span>$ npm install clockworktz</span>
             <span style={{ color: colors.fg }}>clockworktz.dev</span>
           </>
         }

@@ -1,6 +1,6 @@
 # Unusual zones
 
-Timezone code is usually written and tested in a handful of zones that are a whole number of hours from UTC and shift by one hour for DST. These are the zones that break that assumption, and all of them are in clockwork-tz's test suite. Both engines are tested against the same exact fixtures.
+Timezone code is usually written and tested in a handful of zones that are a whole number of hours from UTC and shift by one hour for DST. These are the zones that break that assumption, and all of them are in clockworktz's test suite. Both engines are tested against the same exact fixtures.
 
 ## Offsets that aren't whole hours
 
@@ -15,7 +15,7 @@ Timezone code is usually written and tested in a handful of zones that are a who
 | `America/St_Johns`   | −03:30 / −02:30       | Newfoundland                                      |
 
 ```ts
-import { fromUTC, getOffset } from 'clockwork-tz'
+import { fromUTC, getOffset } from 'clockworktz'
 
 getOffset('2024-01-01T00:00:00Z', 'Australia/Eucla') // 525
 fromUTC('2024-07-15T14:00:00Z', 'Pacific/Marquesas').local // '2024-07-15 04:30:00.000'
@@ -29,10 +29,10 @@ fromUTC('2024-07-15T14:00:00Z', 'Pacific/Marquesas').local // '2024-07-15 04:30:
 | `Antarctica/Troll`    | 2 hours    | +00:00 to +02:00                                            |
 | `Europe/Dublin`       | negative   | Irish law defines summer time as standard and winter as the exception |
 
-Lord Howe's gap and overlap are 30 minutes long, and clockwork-tz [disambiguates](./dst-disambiguation.md) them by exactly that much:
+Lord Howe's gap and overlap are 30 minutes long, and clockworktz [disambiguates](./dst-disambiguation.md) them by exactly that much:
 
 ```ts
-import { interpretLocal } from 'clockwork-tz'
+import { interpretLocal } from 'clockworktz'
 
 interpretLocal('2024-10-06T02:15:00', 'Australia/Lord_Howe').local
 // '2024-10-06 02:45:00.000'
@@ -60,7 +60,7 @@ interpretLocal('2011-12-30T12:00:00', 'Pacific/Apia').local
 POSIX-style `Etc/GMT±N` zones have the opposite sign to what you'd expect: `Etc/GMT+5` is UTC−5.
 
 ```ts
-import { getOffset } from 'clockwork-tz'
+import { getOffset } from 'clockworktz'
 
 getOffset('2024-01-01T00:00:00Z', 'Etc/GMT+5') // -300
 ```
@@ -70,8 +70,8 @@ getOffset('2024-01-01T00:00:00Z', 'Etc/GMT+5') // -300
 Before standard time zones were adopted (mostly in the late 19th century), towns kept local mean time based on their longitude. The tzdb records these offsets, which often include seconds. With the `embedded-tzdb` engine you get them exactly:
 
 ```ts
-import { initClockworkTZ, fromUTC } from 'clockwork-tz'
-import { tzdb } from 'clockwork-tz/tzdb'
+import { initClockworkTZ, fromUTC } from 'clockworktz'
+import { tzdb } from 'clockworktz/tzdb'
 
 await initClockworkTZ({ engine: 'embedded-tzdb', data: tzdb })
 
@@ -83,7 +83,7 @@ fromUTC('1850-01-01T00:00:00Z', 'Europe/Amsterdam')
 
 ## The far future
 
-The tzdb stores rules, not just a list of dates. clockwork-tz's embedded engine evaluates the POSIX TZ rule at the end of each zone's data, so DST transitions beyond 2100 come out right.
+The tzdb stores rules, not just a list of dates. clockworktz's embedded engine evaluates the POSIX TZ rule at the end of each zone's data, so DST transitions beyond 2100 come out right.
 
 ## How it's tested
 

@@ -1,6 +1,6 @@
 # API reference
 
-Every export of `clockwork-tz` and `clockwork-tz/tzdb`, grouped by purpose. Types are TypeScript; everything is available from both ESM and CommonJS.
+Every export of `clockworktz` and `clockworktz/tzdb`, grouped by purpose. Types are TypeScript; everything is available from both ESM and CommonJS.
 
 ```ts
 type DateInput = string | Date | number // ISO string with offset, Date, or epoch ms
@@ -241,7 +241,7 @@ interface ClockworkOptions {
 
 | Export                                              | Description                                                    |
 | --------------------------------------------------- | -------------------------------------------------------------- |
-| `DEFAULT_MANIFEST_URL`                              | `'https://cdn.jsdelivr.net/npm/clockwork-tz-data@1/manifest.json'` |
+| `DEFAULT_MANIFEST_URL`                              | `'https://cdn.jsdelivr.net/npm/clockworktz-data@1/manifest.json'` |
 | `DEFAULT_PUBLIC_KEY`                                | `'DLvL/miUAfXKI8Sae27IuV/o5l3vbg5OIp5QMkeXLkU='`               |
 | `ensureFreshTzdb(manifestURL?, { publicKey?, fetch? })` | `Promise<{ version, data } \| null>`: fetch, verify and cache without changing the engine |
 | `verifyManifestSignature(manifest, publicKey?)`     | `Promise<boolean>`; fails closed without WebCrypto Ed25519     |
@@ -312,10 +312,10 @@ interface Transition {
 
 [Guide](./errors.md)
 
-## `clockwork-tz/tzdb`
+## `clockworktz/tzdb`
 
 ```ts
-import { tzdb } from 'clockwork-tz/tzdb'
+import { tzdb } from 'clockworktz/tzdb'
 ```
 
-The compiled IANA tzdb snapshot (release `2026f` in 1.0.0), for `initClockworkTZ({ engine: 'embedded-tzdb', data: tzdb })`. About 28 kB gzipped.
+The compiled IANA tzdb snapshot (release `2026f` in 1.0.0), for `initClockworkTZ({ engine: 'embedded-tzdb', data: tzdb })`. About 30 kB gzipped.

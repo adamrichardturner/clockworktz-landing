@@ -1,9 +1,9 @@
 # Parsing
 
-clockwork-tz parses ISO 8601 strictly. Strings without an offset are read in an explicit `defaultTimezone` (`UTC` unless you say otherwise), **never** in the timezone of the host. That rules out the classic bug where `new Date('2024-07-15T14:00:00')` means different instants on different machines.
+clockworktz parses ISO 8601 strictly. Strings without an offset are read in an explicit `defaultTimezone` (`UTC` unless you say otherwise), **never** in the timezone of the host. That rules out the classic bug where `new Date('2024-07-15T14:00:00')` means different instants on different machines.
 
 ```ts
-import { parse } from 'clockwork-tz'
+import { parse } from 'clockworktz'
 
 parse('2024-07-15T14:00:00+05:45')
 // { date: 2024-07-15T08:15:00.000Z, hasTimezone: true, original: '2024-07-15T14:00:00+05:45', isValid: true }
@@ -63,7 +63,7 @@ parseDate('2024-07-15 14:00:00Z') // 2024-07-15T14:00:00.000Z
 Never throw. Both always parse non-strictly (any `strict` option is ignored), so they accept ISO strings and other formats that carry their own offset. An unparseable input gives a result with `isValid: false` (the return type also allows `null`, so use optional chaining):
 
 ```ts
-import { safeParse, isParseable } from 'clockwork-tz'
+import { safeParse, isParseable } from 'clockworktz'
 
 safeParse('next tuesday')?.isValid // false
 
@@ -111,7 +111,7 @@ Fractional seconds must have three digits.
 Parses an offset to minutes. Seconds give a fractional result:
 
 ```ts
-import { parseOffset } from 'clockwork-tz'
+import { parseOffset } from 'clockworktz'
 
 parseOffset('+05:45') // 345
 parseOffset('-0330') // -210
@@ -139,7 +139,7 @@ Turns any `DateInput` (`Date`, epoch milliseconds or string) into a `Date`, thro
 Check the two string shapes without parsing them:
 
 ```ts
-import { isValidISOString, isValidLocalISOString } from 'clockwork-tz'
+import { isValidISOString, isValidLocalISOString } from 'clockworktz'
 
 isValidISOString('2024-07-15T14:00:00Z') // true: has an offset
 isValidISOString('2024-07-15T14:00:00') // false

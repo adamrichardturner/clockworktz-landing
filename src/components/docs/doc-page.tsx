@@ -22,13 +22,13 @@ export function DocPage({ doc }: { doc: Doc }) {
         inLanguage: 'en',
         author,
         publisher: author,
-        isPartOf: { '@type': 'WebSite', name: 'clockwork-tz', url: site.url },
-        about: { '@type': 'SoftwareSourceCode', name: 'clockwork-tz', codeRepository: site.repo },
+        isPartOf: { '@type': 'WebSite', name: 'clockworktz', url: site.url },
+        about: { '@type': 'SoftwareSourceCode', name: 'clockworktz', codeRepository: site.repo },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'clockwork-tz', item: site.url },
+          { '@type': 'ListItem', position: 1, name: 'clockworktz', item: site.url },
           { '@type': 'ListItem', position: 2, name: 'Docs', item: `${site.url}/docs` },
           ...(doc.slug ? [{ '@type': 'ListItem', position: 3, name: doc.title, item: url }] : []),
         ],

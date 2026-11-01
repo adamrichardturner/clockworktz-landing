@@ -1,11 +1,11 @@
-# clockwork-tz documentation
+# clockworktz documentation
 
-clockwork-tz converts, formats and parses dates across time zones, and it gets the weird zones right: half-hour and 45-minute offsets, 30-minute DST, skipped days, negative DST and historical local mean time. Local times that fall inside a DST gap or overlap resolve exactly the way [Temporal](https://tc39.es/proposal-temporal/docs/) resolves them.
+clockworktz converts, formats and parses dates across time zones, and it gets the weird zones right: half-hour and 45-minute offsets, 30-minute DST, skipped days, negative DST and historical local mean time. Local times that fall inside a DST gap or overlap resolve exactly the way [Temporal](https://tc39.es/proposal-temporal/docs/) resolves them.
 
-These docs are plain GitHub-flavoured Markdown. You can read them on [clockworktz.dev/docs](https://clockworktz.dev/docs) or [on GitHub](https://github.com/adamrichardturner/clockwork-tz-landing/tree/main/content/docs); the content is the same in both places.
+These docs are plain GitHub-flavoured Markdown. You can read them on [clockworktz.dev/docs](https://clockworktz.dev/docs) or [on GitHub](https://github.com/adamrichardturner/clockworktz-landing/tree/main/content/docs); the content is the same in both places.
 
 ```ts
-import { fromUTC, interpretLocal } from 'clockwork-tz'
+import { fromUTC, interpretLocal } from 'clockworktz'
 
 fromUTC('2024-07-15T14:00:00Z', 'Australia/Lord_Howe').local
 // '2024-07-16 00:30:00.000'
@@ -17,9 +17,9 @@ interpretLocal('2024-03-10T02:30:00', 'America/New_York').local
 
 ## At a glance
 
-- **Zero runtime dependencies.** The core uses the platform's `Intl` API (about 19 kB gzipped).
+- **Zero runtime dependencies.** The core uses the platform's `Intl` API (about 21 kB gzipped).
 - **Host independent.** Results never depend on the timezone of the machine running the code.
-- **Two engines.** `system-intl` uses the OS or browser timezone data. `embedded-tzdb` uses a pinned IANA tzdb release (28 kB gzipped) for identical results everywhere, with optional signed updates.
+- **Two engines.** `system-intl` uses the OS or browser timezone data. `embedded-tzdb` uses a pinned IANA tzdb release (30 kB gzipped) for identical results everywhere, with optional signed updates.
 - **ESM and CommonJS**, with complete TypeScript types.
 - **Node.js 20 or later**, or any browser with `Intl.DateTimeFormat` time zone support.
 
@@ -43,7 +43,7 @@ interpretLocal('2024-03-10T02:30:00', 'America/New_York').local
 
 ## Links
 
-- [Source on GitHub](https://github.com/adamrichardturner/clockwork-tz)
-- [Package on npm](https://www.npmjs.com/package/clockwork-tz)
-- [Changelog](https://github.com/adamrichardturner/clockwork-tz/blob/main/CHANGELOG.md)
-- [Report an issue](https://github.com/adamrichardturner/clockwork-tz/issues)
+- [Source on GitHub](https://github.com/adamrichardturner/clockworktz)
+- [Package on npm](https://www.npmjs.com/package/clockworktz)
+- [Changelog](https://github.com/adamrichardturner/clockworktz/blob/main/CHANGELOG.md)
+- [Report an issue](https://github.com/adamrichardturner/clockworktz/issues)

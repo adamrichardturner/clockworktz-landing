@@ -23,7 +23,7 @@ interface Scenario {
   outcomes: Record<Option, Outcome>
 }
 
-// Every outcome below is the real output of clockwork-tz 1.0.0
+// Every outcome below is the real output of clockworktz 1.0.0
 const scenarios: Scenario[] = [
   {
     id: 'ny-spring',
