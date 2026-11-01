@@ -82,7 +82,7 @@ import { tzdb } from 'clockworktz/tzdb'
 await initClockworkTZ({
   engine: 'embedded-tzdb',
   data: tzdb, // used immediately and whenever an update can't be verified
-  manifestURL: DEFAULT_MANIFEST_URL, // jsDelivr, from the clockworktz-data package
+  manifestURL: DEFAULT_MANIFEST_URL, // jsDelivr, from the @adamrichardturner/clockworktz-data package
   autoUpdateIntervalMs: 24 * 60 * 60 * 1000, // 0 disables periodic checks
 })
 
@@ -91,7 +91,7 @@ onDataUpdate(version => {
 })
 ```
 
-`DEFAULT_MANIFEST_URL` is `https://cdn.jsdelivr.net/npm/clockworktz-data@1/manifest.json`. The `clockworktz-data` package is rebuilt and signed by a scheduled workflow whenever IANA publishes a release.
+`DEFAULT_MANIFEST_URL` is `https://cdn.jsdelivr.net/npm/@adamrichardturner/clockworktz-data@1/manifest.json`. The `@adamrichardturner/clockworktz-data` package is rebuilt and signed by a scheduled workflow whenever IANA publishes a release.
 
 An update is only applied when **all** of these hold:
 

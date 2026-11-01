@@ -8,7 +8,7 @@ Please email [hello@adamrichardturner.dev](mailto:hello@adamrichardturner.dev) r
 
 ## What gets published
 
-Each release of the [`clockworktz-data`](https://www.npmjs.com/package/clockworktz-data) package contains:
+Each release of the [`@adamrichardturner/clockworktz-data`](https://www.npmjs.com/package/@adamrichardturner/clockworktz-data) package contains:
 
 - `tzdb.json`: the compiled data
 - `manifest.json`: `{ version, releaseDate, dataUrl, sha256, signature, keyId }`
@@ -16,15 +16,15 @@ Each release of the [`clockworktz-data`](https://www.npmjs.com/package/clockwork
 ```json
 {
   "version": "2026f",
-  "releaseDate": "2026-11-01T06:57:21.666Z",
-  "dataUrl": "https://cdn.jsdelivr.net/npm/clockworktz-data@1.2026.6/tzdb.json",
+  "releaseDate": "2026-11-01T08:15:18.006Z",
+  "dataUrl": "https://cdn.jsdelivr.net/npm/@adamrichardturner/clockworktz-data@1.2026.6/tzdb.json",
   "sha256": "4ce4303530d44f85a22fc801f9289d91a358005523e678cf3bc6e7ffa5e7c29c",
   "signature": "Txd4kbmGHdec9E/cCAIADYc7j48YYmO7X1VpVZk+VePCWfPCdvyIIyXzV/tjQ9K/I2oEohfIstN+8Uwk3fJ9Dg==",
   "keyId": "63afe89a3ee676d5"
 }
 ```
 
-Package versions are `1.<year>.<release>`, so tzdb `2026f` is `1.2026.6`. The library fetches `https://cdn.jsdelivr.net/npm/clockworktz-data@1/manifest.json` (exported as `DEFAULT_MANIFEST_URL`).
+Package versions are `1.<year>.<release>`, so tzdb `2026f` is `1.2026.6`. The library fetches `https://cdn.jsdelivr.net/npm/@adamrichardturner/clockworktz-data@1/manifest.json` (exported as `DEFAULT_MANIFEST_URL`).
 
 ## What's signed
 

@@ -241,7 +241,7 @@ interface ClockworkOptions {
 
 | Export                                              | Description                                                    |
 | --------------------------------------------------- | -------------------------------------------------------------- |
-| `DEFAULT_MANIFEST_URL`                              | `'https://cdn.jsdelivr.net/npm/clockworktz-data@1/manifest.json'` |
+| `DEFAULT_MANIFEST_URL`                              | `'https://cdn.jsdelivr.net/npm/@adamrichardturner/clockworktz-data@1/manifest.json'` |
 | `DEFAULT_PUBLIC_KEY`                                | `'DLvL/miUAfXKI8Sae27IuV/o5l3vbg5OIp5QMkeXLkU='`               |
 | `ensureFreshTzdb(manifestURL?, { publicKey?, fetch? })` | `Promise<{ version, data } \| null>`: fetch, verify and cache without changing the engine |
 | `verifyManifestSignature(manifest, publicKey?)`     | `Promise<boolean>`; fails closed without WebCrypto Ed25519     |
