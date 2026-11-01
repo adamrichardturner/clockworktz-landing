@@ -8,7 +8,8 @@ import { ZoneClocks } from '@/components/landing/zone-clocks'
 import { GitHubIcon } from '@/components/icons'
 import { exampleTabs, heroExample } from '@/lib/examples'
 import { highlight } from '@/lib/highlight'
-import { site } from '@/lib/site'
+import { author, jsonLd, keywords } from '@/lib/seo'
+import { homeDescription, site } from '@/lib/site'
 
 const features = [
   {
@@ -89,8 +90,41 @@ export default async function Home() {
     }))
   )
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${site.url}/#website`,
+        name: 'clockwork-tz',
+        alternateName: ['clockwork tz', 'clockworktz'],
+        url: site.url,
+        description: homeDescription,
+        inLanguage: 'en',
+        publisher: author,
+      },
+      {
+        '@type': 'SoftwareSourceCode',
+        '@id': `${site.url}/#software`,
+        name: 'clockwork-tz',
+        description: site.description,
+        url: site.url,
+        image: `${site.url}/opengraph-image`,
+        codeRepository: site.repo,
+        programmingLanguage: ['TypeScript', 'JavaScript'],
+        runtimePlatform: ['Node.js', 'Web browsers'],
+        license: 'https://opensource.org/licenses/MIT',
+        version: site.version,
+        keywords: keywords.join(', '),
+        author,
+        sameAs: [site.repo, site.npm],
+      },
+    ],
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(structuredData)} />
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
@@ -104,11 +138,15 @@ export default async function Home() {
               {site.tzdbVersion}
             </a>
             <h1 className="mt-6 text-5xl font-semibold tracking-tight text-balance sm:text-6xl">
+              <span className="mb-3 block font-mono text-base font-medium tracking-normal text-fg-muted sm:text-lg">
+                clockwork-tz
+              </span>
               Timezones that get the <em className="font-serif font-normal text-accent">weird zones</em> right.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-fg-muted text-pretty">
-              Half-hour and 45-minute offsets, 30-minute DST, skipped days, negative DST and historical local mean
-              time, with DST gaps and overlaps resolved exactly the way Temporal does. In about 19 kB.
+              A zero-dependency timezone library for JavaScript and TypeScript. Half-hour and 45-minute offsets,
+              30-minute DST, skipped days, negative DST and historical local mean time, with DST gaps and overlaps
+              resolved exactly the way Temporal does. In about 19 kB.
             </p>
             <div className="mt-8 flex flex-col gap-4">
               <InstallCommand />

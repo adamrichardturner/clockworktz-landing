@@ -3,7 +3,8 @@ import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
-import { site } from '@/lib/site'
+import { keywords, pageMetadata } from '@/lib/seo'
+import { homeDescription, homeTitle, site } from '@/lib/site'
 import './globals.css'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
@@ -18,21 +19,22 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: 'clockwork-tz: timezones that get the weird zones right',
+    default: homeTitle,
     template: '%s · clockwork-tz',
   },
-  description: site.description,
-  keywords: ['timezone', 'tz', 'dst', 'iana', 'tzdb', 'intl', 'temporal', 'typescript', 'javascript'],
+  applicationName: 'clockwork-tz',
+  keywords,
   authors: [{ name: site.author, url: 'https://adamrichardturner.dev' }],
-  openGraph: {
-    type: 'website',
-    url: site.url,
-    siteName: 'clockwork-tz',
-    title: 'clockwork-tz',
-    description: site.description,
+  creator: site.author,
+  publisher: site.author,
+  category: 'technology',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
   },
-  twitter: { card: 'summary_large_image' },
-  alternates: { canonical: '/' },
+  formatDetection: { telephone: false, address: false, email: false },
+  ...pageMetadata({ title: homeTitle, description: homeDescription, path: '/' }),
 }
 
 export const viewport: Viewport = {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { DocPage } from '@/components/docs/doc-page'
 import { docSlugs, getDoc } from '@/lib/docs'
+import { pageMetadata } from '@/lib/seo'
 
 export function generateStaticParams() {
   return docSlugs.filter(Boolean).map(slug => ({ slug }))
@@ -15,9 +16,12 @@ export async function generateMetadata({ params }: PageProps<'/docs/[slug]'>): P
   }
   return {
     title: doc.title,
-    description: doc.description,
-    alternates: { canonical: `/docs/${slug}` },
-    openGraph: { title: `${doc.title} · clockwork-tz`, description: doc.description },
+    ...pageMetadata({
+      title: `${doc.title} · clockwork-tz`,
+      description: doc.description,
+      path: `/docs/${slug}`,
+      type: 'article',
+    }),
   }
 }
 

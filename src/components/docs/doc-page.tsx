@@ -3,13 +3,42 @@ import { ArrowLeft, ArrowRight, SquarePen } from 'lucide-react'
 import { DocContent } from './doc-content'
 import { DocToc } from './doc-toc'
 import { docHref, docSourceUrl, docsNav, getAdjacentDocs, type Doc } from '@/lib/docs'
+import { author, jsonLd } from '@/lib/seo'
+import { site } from '@/lib/site'
 
 export function DocPage({ doc }: { doc: Doc }) {
   const group = docsNav.find(g => g.items.some(item => item.slug === doc.slug))
   const { prev, next } = getAdjacentDocs(doc.slug)
+  const url = `${site.url}${docHref(doc.slug)}`
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'TechArticle',
+        headline: doc.title,
+        description: doc.description,
+        url,
+        image: `${url}/opengraph-image`,
+        inLanguage: 'en',
+        author,
+        publisher: author,
+        isPartOf: { '@type': 'WebSite', name: 'clockwork-tz', url: site.url },
+        about: { '@type': 'SoftwareSourceCode', name: 'clockwork-tz', codeRepository: site.repo },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'clockwork-tz', item: site.url },
+          { '@type': 'ListItem', position: 2, name: 'Docs', item: `${site.url}/docs` },
+          ...(doc.slug ? [{ '@type': 'ListItem', position: 3, name: doc.title, item: url }] : []),
+        ],
+      },
+    ],
+  }
 
   return (
     <div className="flex gap-10 px-4 py-10 sm:px-6 lg:px-0">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(structuredData)} />
       <article className="min-w-0 flex-1 xl:max-w-3xl">
         <p className="font-mono text-xs font-medium tracking-wider text-accent uppercase">{group?.title}</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">{doc.title}</h1>

@@ -15,7 +15,7 @@ import { unified } from 'unified'
 import { visit } from 'unist-util-visit'
 import { site } from './site'
 import { codeThemes } from './highlight'
-import { docHref, docSlugs } from './docs-nav'
+import { docHref, docSlugs, docsNav } from './docs-nav'
 
 export { docHref, docSlugs, docsNav, getAdjacentDocs, type DocGroup, type DocLink } from './docs-nav'
 
@@ -109,11 +109,12 @@ function describe(markdown: string): string {
     .split(/\n{2,}/)
     .map(block => block.trim())
     .find(block => block && !/^[#>|`\-*!<[]/.test(block))
-  return (paragraph ?? site.description)
+  const text = (paragraph ?? site.description)
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/[`*_]/g, '')
     .replace(/\s+/g, ' ')
-    .slice(0, 200)
+  // Search engines show about 160 characters; cut on a word boundary
+  return text.length <= 160 ? text : `${text.slice(0, 157).replace(/\s+\S*$/, '')}…`
 }
 
 export async function renderMarkdown(markdown: string) {
@@ -146,7 +147,8 @@ export async function getDoc(slug: string): Promise<Doc | null> {
   }
   const markdown = await readFile(path.join(DOCS_DIR, docFile(slug)), 'utf8')
   const { html, title, toc } = await renderMarkdown(markdown)
-  return { slug, title, description: describe(markdown), html, toc }
+  const link = docsNav.flatMap(group => group.items).find(item => item.slug === slug)
+  return { slug, title, description: link?.description ?? describe(markdown), html, toc }
 }
 
 export async function getRawDoc(slug: string): Promise<string | null> {

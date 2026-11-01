@@ -10,3 +10,11 @@ export const site = {
   npm: 'https://www.npmjs.com/package/clockwork-tz',
   author: 'Adam Turner',
 } as const
+
+/** Under 60 characters, leading with the package name */
+export const homeTitle = 'clockwork-tz: JavaScript & TypeScript timezone library'
+
+/** Under 160 characters, for search snippets and link previews */
+export const homeDescription =
+  'clockwork-tz converts and formats dates across time zones with exact DST handling, ' +
+  'half-hour offsets and an optional pinned IANA tzdb. Zero dependencies.'
