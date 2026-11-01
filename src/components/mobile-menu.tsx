@@ -34,6 +34,7 @@ import { ThemeToggle } from './theme-toggle'
 import { buttonVariants } from '@/components/ui/button'
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { docHref, docsNav } from '@/lib/docs-nav'
+import { currentSection } from '@/lib/nav'
 import { site } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
@@ -153,7 +154,7 @@ export function MobileMenu() {
 
   const onDocs = pathname === '/docs' || pathname.startsWith('/docs/')
   const sections = pathname === '/' ? homeSections : pathname === '/demo' ? demoSections : null
-  const routeCurrent = (href: string) => (href === '/' ? pathname === '/' : href === '/docs' ? pathname === '/docs' : pathname === href)
+  const section = currentSection(pathname)
 
   return (
     <Sheet
@@ -244,7 +245,7 @@ export function MobileMenu() {
             <MenuLabel id="mobile-menu-explore">Explore</MenuLabel>
             <ul className="mt-2 space-y-1">
               {exploreLinks.map(link => {
-                const current = routeCurrent(link.href)
+                const current = section === link.href
                 return (
                   <li key={link.href}>
                     <Link href={link.href} onClick={closeMenu} aria-current={current ? 'page' : undefined} className={itemClass(current)}>
