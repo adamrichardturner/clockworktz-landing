@@ -177,7 +177,7 @@ export default async function Home() {
       </section>
 
       {/* Live clocks */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <section id="clocks" className="scroll-mt-20 mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <SectionHeading eyebrow="Right now" title="Eight zones that break naive timezone code">
           Not every zone is a whole number of hours from UTC, and not every DST shift is one hour. These clocks are
           live in your browser.
@@ -188,7 +188,7 @@ export default async function Home() {
       </section>
 
       {/* DST explorer */}
-      <section className="border-y border-border bg-bg-subtle">
+      <section id="dst" className="scroll-mt-20 border-y border-border bg-bg-subtle">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
           <SectionHeading eyebrow="DST gaps and overlaps" title="Some local times never happen. Some happen twice.">
             When clocks spring forward, a wall time is skipped; when they fall back, it repeats. Pick a scenario
@@ -209,7 +209,7 @@ export default async function Home() {
       </section>
 
       {/* Features */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <section id="features" className="scroll-mt-20 mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <SectionHeading eyebrow="Why clockworktz" title="Small, strict and exact" />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map(({ Icon, title, body, href }) => (
@@ -230,7 +230,7 @@ export default async function Home() {
       </section>
 
       {/* Examples */}
-      <section className="border-y border-border bg-bg-subtle">
+      <section id="examples" className="scroll-mt-20 border-y border-border bg-bg-subtle">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
           <div>
             <SectionHeading eyebrow="Examples" title="One small API for every timezone job">
@@ -249,7 +249,7 @@ export default async function Home() {
       </section>
 
       {/* Engines */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <section id="engines" className="scroll-mt-20 mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <SectionHeading eyebrow="Engines" title="Use the platform's data, or pin your own">
           Both engines run the same conversions and are tested against the same fixtures. Switch with one call.
         </SectionHeading>
@@ -294,7 +294,7 @@ export default async function Home() {
       </section>
 
       {/* Tested zones */}
-      <section className="border-t border-border bg-bg-subtle">
+      <section id="tested" className="scroll-mt-20 border-t border-border bg-bg-subtle">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
           <SectionHeading eyebrow="Tested" title="If it's strange, it's in the test suite">
             Both engines are tested against the same exact fixtures. The embedded data is checked against ICU for

@@ -35,7 +35,7 @@ export function DemoNav({ sections }: { sections: { id: string; label: string }[
   }, [active])
 
   return (
-    <div className="sticky top-14 z-30 border-b border-border bg-bg/85 backdrop-blur-md">
+    <div data-sticky className="sticky top-14 z-30 border-b border-border bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 sm:px-6">
         <nav aria-label="Demo sections" className="flex min-w-0 flex-1 gap-1 overflow-x-auto py-2 [scrollbar-width:none]">
           {sections.map(s => (
