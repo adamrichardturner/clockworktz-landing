@@ -3,7 +3,7 @@ export const site = {
   url: 'https://clockworktz.dev',
   description:
     'Timezone conversions that get the weird zones right: exact DST disambiguation, half- and quarter-hour offsets, and an optional deterministic IANA tzdb engine. Zero dependencies.',
-  version: '1.0.1',
+  version: '1.0.2',
   tzdbVersion: '2026f',
   repo: 'https://github.com/adamrichardturner/clockworktz',
   docsRepo: 'https://github.com/adamrichardturner/clockworktz-landing',

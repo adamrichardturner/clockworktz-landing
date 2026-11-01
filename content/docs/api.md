@@ -223,7 +223,7 @@ interface TransitionInfo {
 | `getInitOptions()`                    | A copy of the last `ClockworkOptions`                               |
 | `onDataUpdate(callback: (version: string) => void)` | Unsubscribe function                                  |
 | `refreshTimezoneData()`               | `Promise<boolean>`: true if newer data was loaded                   |
-| `VERSION`                             | The library version, e.g. `'1.0.1'`                                 |
+| `VERSION`                             | The library version, e.g. `'1.0.2'`                                 |
 
 ```ts
 interface ClockworkOptions {
@@ -324,5 +324,5 @@ TZDB_VERSION // '2026f'
 | Export         | Description                                                                                  |
 | -------------- | -------------------------------------------------------------------------------------------- |
 | `tzdb`         | The compiled IANA tzdb snapshot, for `initClockworkTZ({ engine: 'embedded-tzdb', data: tzdb })`. About 30 kB gzipped |
-| `TZDB_VERSION` | The IANA release `tzdb` was built from: `'2026f'` in 1.0.1                                   |
+| `TZDB_VERSION` | The IANA release `tzdb` was built from: `'2026f'` in 1.0.2                                   |
 | `TzdbData`, `CompactZone` | Types describing the data format                                                  |

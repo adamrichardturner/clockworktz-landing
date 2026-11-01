@@ -12,7 +12,7 @@
     "@base-ui/react": "^1.9.0",
     "@shikijs/rehype": "^4.5.0",
     "class-variance-authority": "^0.7.1",
-    "clockworktz": "^1.0.1",
+    "clockworktz": "^1.0.2",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "hast-util-to-string": "^3.0.1",
