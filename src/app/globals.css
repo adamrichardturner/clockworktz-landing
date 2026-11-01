@@ -1,0 +1,350 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #fbfaf7;
+  --bg-subtle: #f3f1ec;
+  --surface: #ffffff;
+  --fg: #1a1714;
+  --fg-muted: #5f5850;
+  --fg-faint: #8b847b;
+  --border: #e4e0d8;
+  --border-strong: #d2ccc1;
+  --accent: #b45309;
+  --accent-fg: #ffffff;
+  --accent-soft: #fdf1e3;
+  --code-bg: #f6f8fa;
+  --ring: #d97706;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0d0c0b;
+  --bg-subtle: #151311;
+  --surface: #171513;
+  --fg: #ece8e1;
+  --fg-muted: #a8a097;
+  --fg-faint: #776f66;
+  --border: #2a2622;
+  --border-strong: #3a352f;
+  --accent: #f59e0b;
+  --accent-fg: #1a1102;
+  --accent-soft: #2a1d0b;
+  --code-bg: #0d1117;
+  --ring: #f59e0b;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-code-bg: var(--code-bg);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 30%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Shiki dual themes: tokens carry --shiki-light / --shiki-dark */
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+}
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark);
+}
+.shiki {
+  background: transparent !important;
+}
+
+.code-block pre {
+  overflow-x: auto;
+  padding: 1rem 1.125rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  tab-size: 2;
+}
+
+/* Background grid used on the landing page */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at top, black 20%, transparent 70%);
+}
+
+/* ---------- Docs prose ---------- */
+.prose {
+  color: var(--fg);
+  font-size: 0.97rem;
+  line-height: 1.75;
+  min-width: 0;
+}
+.prose > * + * {
+  margin-top: 1.1em;
+}
+.prose h2 {
+  margin-top: 2.6em;
+  padding-top: 0.4em;
+  font-size: 1.45rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+.prose h3 {
+  margin-top: 2em;
+  font-size: 1.12rem;
+  font-weight: 620;
+  line-height: 1.4;
+}
+.prose h4 {
+  margin-top: 1.6em;
+  font-weight: 620;
+}
+.prose h2 + *,
+.prose h3 + *,
+.prose h4 + * {
+  margin-top: 0.7em;
+}
+.prose .anchor {
+  margin-left: 0.4em;
+  color: var(--fg-faint);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.prose :is(h2, h3, h4):hover .anchor,
+.prose .anchor:focus-visible {
+  opacity: 1;
+}
+.prose p,
+.prose li {
+  color: color-mix(in oklab, var(--fg) 88%, var(--fg-muted));
+}
+.prose a:not(.anchor) {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--accent) 40%, transparent);
+  text-underline-offset: 3px;
+}
+.prose a:not(.anchor):hover {
+  text-decoration-color: var(--accent);
+}
+.prose strong {
+  font-weight: 620;
+  color: var(--fg);
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+.prose ul {
+  list-style: disc;
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose li + li {
+  margin-top: 0.35em;
+}
+.prose li::marker {
+  color: var(--fg-faint);
+}
+.prose hr {
+  border-color: var(--border);
+  margin: 2.5em 0;
+}
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.84em;
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+.prose pre {
+  position: relative;
+  overflow-x: auto;
+  padding: 1rem 1.125rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--code-bg) !important;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+.prose pre code {
+  font-family: inherit;
+}
+.prose blockquote {
+  border-left: 3px solid var(--border-strong);
+  padding-left: 1em;
+  color: var(--fg-muted);
+}
+.prose .table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+.prose th {
+  text-align: left;
+  font-weight: 600;
+  background: var(--bg-subtle);
+}
+.prose th,
+.prose td {
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.prose tr:last-child td {
+  border-bottom: 0;
+}
+.prose td code,
+.prose th code {
+  white-space: nowrap;
+}
+
+/* GitHub alerts: > [!NOTE] etc. */
+.prose .markdown-alert {
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+}
+.prose .markdown-alert > * + * {
+  margin-top: 0.5em;
+}
+.prose .markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.prose .markdown-alert-title svg {
+  fill: currentColor;
+}
+.prose .markdown-alert-note {
+  border-left-color: #0969da;
+}
+.prose .markdown-alert-note .markdown-alert-title {
+  color: #0969da;
+}
+.prose .markdown-alert-tip {
+  border-left-color: #1a7f37;
+}
+.prose .markdown-alert-tip .markdown-alert-title {
+  color: #1a7f37;
+}
+.prose .markdown-alert-important {
+  border-left-color: #8250df;
+}
+.prose .markdown-alert-important .markdown-alert-title {
+  color: #8250df;
+}
+.prose .markdown-alert-warning {
+  border-left-color: #9a6700;
+}
+.prose .markdown-alert-warning .markdown-alert-title {
+  color: #9a6700;
+}
+.prose .markdown-alert-caution {
+  border-left-color: #cf222e;
+}
+.prose .markdown-alert-caution .markdown-alert-title {
+  color: #cf222e;
+}
+.dark .prose .markdown-alert-note .markdown-alert-title {
+  color: #4493f8;
+}
+.dark .prose .markdown-alert-tip .markdown-alert-title {
+  color: #3fb950;
+}
+.dark .prose .markdown-alert-important .markdown-alert-title {
+  color: #ab7df8;
+}
+.dark .prose .markdown-alert-warning .markdown-alert-title {
+  color: #d29922;
+}
+.dark .prose .markdown-alert-caution .markdown-alert-title {
+  color: #f85149;
+}
+
+/* Copy button injected into docs code blocks */
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--fg-muted);
+  opacity: 0;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+.prose pre:hover .copy-btn,
+.copy-btn:focus-visible,
+.copy-btn[data-copied] {
+  opacity: 1;
+}
+@media (hover: none) {
+  .copy-btn {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
