@@ -1,6 +1,6 @@
 # Transitions & clocks
 
-A **transition** is the moment a zone's offset, DST flag or abbreviation changes: the start or end of DST, or a permanent change of standard time. clockwork-tz finds transitions exactly, to the second, with both engines.
+A **transition** is the moment a zone's offset, DST flag or abbreviation changes: the start or end of DST, or a permanent change of standard time. clockworktz finds transitions exactly, to the second, with both engines.
 
 ## Finding transitions
 
@@ -9,7 +9,7 @@ A **transition** is the moment a zone's offset, DST flag or abbreviation changes
 The first transition after `from` (default: now), or `null` if there's none in the next two years:
 
 ```ts
-import { getNextTransition } from 'clockwork-tz'
+import { getNextTransition } from 'clockworktz'
 
 getNextTransition('Australia/Lord_Howe', '2024-07-15T14:00:00Z')
 // {
@@ -41,7 +41,7 @@ getPreviousTransition('Australia/Lord_Howe', '2024-07-15T14:00:00Z')
 Every transition in `[from, to)`:
 
 ```ts
-import { getTransitions } from 'clockwork-tz'
+import { getTransitions } from 'clockworktz'
 
 getTransitions('Pacific/Chatham', '2024-01-01T00:00:00Z', '2025-01-01T00:00:00Z')
 // [
@@ -71,7 +71,7 @@ getTransitions('Africa/Casablanca', '2024-01-01T00:00:00Z', '2025-01-01T00:00:00
 Whether a transition happens within `windowHours` (default 24) either side of an instant. Useful for warning users that a scheduled time is close to a clock change:
 
 ```ts
-import { getCurrentEngine, isNearTransition } from 'clockwork-tz'
+import { getCurrentEngine, isNearTransition } from 'clockworktz'
 
 isNearTransition('2024-03-31T00:30:00Z', 'Europe/London') // true
 isNearTransition('2024-06-01T00:00:00Z', 'Europe/London') // false
@@ -95,14 +95,14 @@ Invalid zones return `null` (or `[]`, or `false`) from these functions rather th
 
 ### How exact is it?
 
-The `embedded-tzdb` engine reads transitions straight from the tzdb. The `system-intl` engine has no transition list, so clockwork-tz samples each day and bisects to the exact second where the offset, DST flag or abbreviation changes. Both return the same results; the test suite checks they agree.
+The `embedded-tzdb` engine reads transitions straight from the tzdb. The `system-intl` engine has no transition list, so clockworktz samples each day and bisects to the exact second where the offset, DST flag or abbreviation changes. Both return the same results; the test suite checks they agree.
 
 ## Watching for transitions
 
 `watchZoneTransitions(zone, callback)` calls `callback` just after each transition in `zone` happens. Use it to re-render UI that shows an offset or abbreviation, or to reschedule wall-time jobs.
 
 ```ts
-import { watchZoneTransitions } from 'clockwork-tz'
+import { watchZoneTransitions } from 'clockworktz'
 
 const stopWatching = watchZoneTransitions('Europe/London', at => {
   console.log(`London changed offset at ${at.toISOString()}`)
@@ -120,7 +120,7 @@ stopWatching()
 `onTick(callback, granularityMs = 1000)` calls `callback` immediately, then on every multiple of `granularityMs` of **wall-clock** time. A 1000 ms clock ticks exactly on each second instead of drifting the way `setInterval` does.
 
 ```ts
-import { onTick, format } from 'clockwork-tz'
+import { onTick, format } from 'clockworktz'
 
 const stopTicking = onTick(now => {
   clockElement.textContent = format(now, 'Asia/Kathmandu', 'HH:mm:ss')
@@ -137,7 +137,7 @@ Granularity below 100 ms is clamped to 100 ms (with a warning).
 Each watcher returns a stop function; call it when the component unmounts or the job ends. To stop everything at once, for example in tests or on server shutdown:
 
 ```ts
-import { cleanupAllWatchers, getWatcherStats } from 'clockwork-tz'
+import { cleanupAllWatchers, getWatcherStats } from 'clockworktz'
 
 getWatcherStats() // { transitionWatchers: 2, tickWatchers: 1 }
 cleanupAllWatchers()

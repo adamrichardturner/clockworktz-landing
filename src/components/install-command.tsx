@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { CopyButton } from './copy-button'
 
 const managers = {
-  npm: 'npm install clockwork-tz',
-  pnpm: 'pnpm add clockwork-tz',
-  yarn: 'yarn add clockwork-tz',
-  bun: 'bun add clockwork-tz',
+  npm: 'npm install clockworktz',
+  pnpm: 'pnpm add clockworktz',
+  yarn: 'yarn add clockworktz',
+  bun: 'bun add clockworktz',
 } as const
 
 type Manager = keyof typeof managers

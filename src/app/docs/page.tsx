@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = 'Documentation'
   return {
     title,
-    ...pageMetadata({ title: `clockwork-tz ${title.toLowerCase()}`, description: doc?.description ?? '', path: '/docs' }),
+    ...pageMetadata({ title: `clockworktz ${title.toLowerCase()}`, description: doc?.description ?? '', path: '/docs' }),
   }
 }
 

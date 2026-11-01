@@ -20,7 +20,7 @@ export function Logo() {
   return (
     <span className="flex items-center gap-2 font-mono text-[0.95rem] font-semibold tracking-tight whitespace-nowrap">
       <LogoMark className="size-7" />
-      clockwork-tz
+      clockworktz
     </span>
   )
 }

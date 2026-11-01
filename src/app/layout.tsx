@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: homeTitle,
-    template: '%s · clockwork-tz',
+    template: '%s · clockworktz',
   },
-  applicationName: 'clockwork-tz',
+  applicationName: 'clockworktz',
   keywords,
   authors: [{ name: site.author, url: 'https://adamrichardturner.dev' }],
   creator: site.author,

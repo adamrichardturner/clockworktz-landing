@@ -1,7 +1,7 @@
 import { getDoc } from '@/lib/docs'
 import { ogContentType, ogSize, renderDocOg } from '@/lib/og'
 
-export const alt = 'clockwork-tz documentation'
+export const alt = 'clockworktz documentation'
 export const size = ogSize
 export const contentType = ogContentType
 

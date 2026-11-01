@@ -20,10 +20,10 @@ When a zone changes its offset, some wall times stop mapping to exactly one inst
 
 ## Gaps
 
-For a gap, clockwork-tz computes the instant using the offset in effect **before** and **after** the transition. Pushing forward (`compatible`, `latest`) moves the time later by the length of the gap; pulling back (`earliest`) moves it earlier.
+For a gap, clockworktz computes the instant using the offset in effect **before** and **after** the transition. Pushing forward (`compatible`, `latest`) moves the time later by the length of the gap; pulling back (`earliest`) moves it earlier.
 
 ```ts
-import { interpretLocal } from 'clockwork-tz'
+import { interpretLocal } from 'clockworktz'
 
 const wall = '2024-03-10T02:30:00' // skipped in New York
 
@@ -65,7 +65,7 @@ interpretLocal('2011-12-30T12:00:00', 'Pacific/Apia', { disambiguation: 'earlies
 In an overlap the wall time is the same either way; what changes is the instant (and the offset).
 
 ```ts
-import { interpretLocal } from 'clockwork-tz'
+import { interpretLocal } from 'clockworktz'
 
 const wall = '2024-11-03T01:30:00' // happens twice in New York
 
@@ -102,7 +102,7 @@ Invalid fields, such as `day: 30` in February or a non-integer, throw `TimezoneE
 `convert` passes `disambiguation` through when its input is wall time:
 
 ```ts
-import { convert } from 'clockwork-tz'
+import { convert } from 'clockworktz'
 
 convert('2024-11-03T01:30:00', 'America/New_York', 'Europe/London', {
   disambiguation: 'latest',
@@ -123,7 +123,7 @@ When the input is an instant, there's nothing to disambiguate and the option is 
 Comparing `earliest` and `latest` tells you whether a wall time is normal, skipped or repeated, without relying on exceptions:
 
 ```ts
-import { interpretLocal } from 'clockwork-tz'
+import { interpretLocal } from 'clockworktz'
 
 function classify(wall: string, zone: string): 'normal' | 'skipped' | 'repeated' {
   const early = interpretLocal(wall, zone, { disambiguation: 'earliest' })

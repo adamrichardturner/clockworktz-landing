@@ -1,6 +1,6 @@
-# clockwork-tz-landing
+# clockworktz-landing
 
-The website and documentation for [clockwork-tz](https://github.com/adamrichardturner/clockwork-tz), live at **[clockworktz.dev](https://clockworktz.dev)**.
+The website and documentation for [clockworktz](https://github.com/adamrichardturner/clockworktz), live at **[clockworktz.dev](https://clockworktz.dev)**.
 
 - **Landing page:** [clockworktz.dev](https://clockworktz.dev)
 - **Docs:** [clockworktz.dev/docs](https://clockworktz.dev/docs), also readable on GitHub in [`content/docs`](./content/docs)
@@ -17,9 +17,9 @@ Every docs page is a GitHub-flavoured Markdown file in [`content/docs`](./conten
 
 To add a page, create `content/docs/<slug>.md` and add it to `docsNav` in [`src/lib/docs.ts`](./src/lib/docs.ts).
 
-Code samples should show real output from the library. Run them against a build of clockwork-tz before committing.
+Code samples should show real output from the library. Run them against a build of clockworktz before committing.
 
-## Linking from the clockwork-tz README
+## Linking from the clockworktz README
 
 Badge:
 

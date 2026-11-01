@@ -7,7 +7,7 @@ Complete patterns for common jobs. Each one uses only the public API.
 Store the meeting as an instant (UTC), created from the organiser's wall time, then show it in each attendee's zone.
 
 ```ts
-import { convert, interpretLocal } from 'clockwork-tz'
+import { convert, interpretLocal } from 'clockworktz'
 
 // The organiser picks 10:00 on 12 September in London
 const meeting = interpretLocal('2024-09-12T10:00:00', 'Europe/London')
@@ -27,7 +27,7 @@ for (const zone of ['America/Los_Angeles', 'Asia/Kolkata', 'Australia/Sydney']) 
 ## A recurring event that survives DST
 
 ```ts
-import { interpretLocal } from 'clockwork-tz'
+import { interpretLocal } from 'clockworktz'
 
 function weeklyOccurrences(startDate: string, time: string, zone: string, count: number) {
   const [year, month, day] = startDate.split('-').map(Number) as [number, number, number]
@@ -60,7 +60,7 @@ Adding 7 × 24 hours to the first instant instead would have moved the second an
 ```tsx
 'use client'
 import { useEffect, useState } from 'react'
-import { format, onTick, watchZoneTransitions } from 'clockwork-tz'
+import { format, onTick, watchZoneTransitions } from 'clockworktz'
 
 export function WorldClock({ zone }: { zone: string }) {
   const [now, setNow] = useState(() => new Date())
@@ -94,7 +94,7 @@ Offsets depend on the date, so list zones for the date the user is scheduling, a
 ```tsx
 'use client'
 import { useMemo } from 'react'
-import { getUserTimeZone, listTimeZones } from 'clockwork-tz'
+import { getUserTimeZone, listTimeZones } from 'clockworktz'
 
 export function TimeZoneSelect({
   value = getUserTimeZone(),
@@ -135,7 +135,7 @@ export function TimeZoneSelect({
 Reject skipped and repeated times instead of silently moving them, and tell the user what happened.
 
 ```ts
-import { interpretLocal, AmbiguousTimeError, InvalidTimeError } from 'clockwork-tz'
+import { interpretLocal, AmbiguousTimeError, InvalidTimeError } from 'clockworktz'
 
 export function validateSlot(wall: string, zone: string) {
   try {
@@ -171,7 +171,7 @@ validateSlot('2024-11-03T01:30:00', 'America/New_York')
 Logs read best in one zone, with the offset written out so nobody has to guess:
 
 ```ts
-import { formatFor } from 'clockwork-tz'
+import { formatFor } from 'clockworktz'
 
 const stamp = () => formatFor(new Date(), 'Europe/London', 'log')
 console.log(`[${stamp()}] server started`)
@@ -183,7 +183,7 @@ For filenames, `formatFor(instant, zone, 'filename')` gives `2024-03-15_14-30-00
 ## Show "your time" next to an event's time
 
 ```ts
-import { format, getUserTimeZone } from 'clockwork-tz'
+import { format, getUserTimeZone } from 'clockworktz'
 
 function eventTimes(utc: string, eventZone: string) {
   const viewer = getUserTimeZone()
@@ -197,9 +197,9 @@ function eventTimes(utc: string, eventZone: string) {
 When a server validates what a browser computed, both must use the same rules. Pin the tzdb on both sides:
 
 ```ts
-// shared/time.ts — import this before anything else uses clockwork-tz
-import { initClockworkTZ, DEFAULT_MANIFEST_URL } from 'clockwork-tz'
-import { tzdb } from 'clockwork-tz/tzdb'
+// shared/time.ts — import this before anything else uses clockworktz
+import { initClockworkTZ, DEFAULT_MANIFEST_URL } from 'clockworktz'
+import { tzdb } from 'clockworktz/tzdb'
 
 export const ready = initClockworkTZ({
   engine: 'embedded-tzdb',
@@ -216,7 +216,7 @@ Most functions take an explicit instant, so pass one instead of relying on the c
 
 ```ts
 import { afterEach, beforeEach, vi } from 'vitest'
-import { cleanupAllWatchers } from 'clockwork-tz'
+import { cleanupAllWatchers } from 'clockworktz'
 
 beforeEach(() => {
   vi.useFakeTimers()
@@ -229,4 +229,4 @@ afterEach(() => {
 })
 ```
 
-Run your suite under a few host timezones too (`TZ=Australia/Lord_Howe npm test`). clockwork-tz doesn't depend on the host zone, but your own code might.
+Run your suite under a few host timezones too (`TZ=Australia/Lord_Howe npm test`). clockworktz doesn't depend on the host zone, but your own code might.

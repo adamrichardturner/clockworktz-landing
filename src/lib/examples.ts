@@ -1,8 +1,8 @@
 // Snippets shown on the landing page. Every output comment is the real result
-// from clockwork-tz 1.0.0; keep them in sync with content/docs.
+// from clockworktz 1.0.0; keep them in sync with content/docs.
 
 export const heroExample = `
-import { fromUTC, convert, format } from 'clockwork-tz'
+import { fromUTC, convert, format } from 'clockworktz'
 
 fromUTC('2024-07-15T14:00:00Z', 'Australia/Lord_Howe')
 // {
@@ -29,7 +29,7 @@ export const exampleTabs = [
     label: 'Convert',
     file: 'meeting.ts',
     code: `
-import { convert, fromUTC } from 'clockwork-tz'
+import { convert, fromUTC } from 'clockworktz'
 
 // 10:00 in London: what is that for everyone else?
 const attendees = ['America/Los_Angeles', 'Asia/Kolkata', 'Australia/Sydney']
@@ -58,7 +58,7 @@ fromUTC('2024-07-15T14:00:00Z', '+05:30').local
     label: 'DST gaps & overlaps',
     file: 'disambiguation.ts',
     code: `
-import { interpretLocal, AmbiguousTimeError } from 'clockwork-tz'
+import { interpretLocal, AmbiguousTimeError } from 'clockworktz'
 
 // 01:30 happens twice in New York on 3 November 2024
 interpretLocal('2024-11-03T01:30:00', 'America/New_York').utc
@@ -88,7 +88,7 @@ interpretLocal({ year: 2024, month: 3, day: 10, hour: 2, minute: 30 }, 'America/
     label: 'Format',
     file: 'format.ts',
     code: `
-import { format, formatWithPattern, formatRange, formatRelative } from 'clockwork-tz'
+import { format, formatWithPattern, formatRange, formatRelative } from 'clockworktz'
 
 format('2024-07-05T09:05:07Z', 'Asia/Kathmandu', "EEEE d MMMM, HH:mm 'at' xxx")
 // 'Friday 5 July, 14:50 at +05:45'
@@ -114,7 +114,7 @@ formatRelative('2024-03-15T12:30:00Z', 'UTC', '2024-03-15T14:30:00Z')
     label: 'Transitions',
     file: 'transitions.ts',
     code: `
-import { getNextTransition, getTransitions } from 'clockwork-tz'
+import { getNextTransition, getTransitions } from 'clockworktz'
 
 getNextTransition('Australia/Lord_Howe', '2024-07-15T14:00:00Z')
 // {
@@ -140,8 +140,8 @@ getTransitions('Pacific/Chatham', '2024-01-01T00:00:00Z', '2025-01-01T00:00:00Z'
     label: 'Embedded tzdb',
     file: 'init.ts',
     code: `
-import { initClockworkTZ, fromUTC, tzdbVersion, DEFAULT_MANIFEST_URL } from 'clockwork-tz'
-import { tzdb } from 'clockwork-tz/tzdb'
+import { initClockworkTZ, fromUTC, tzdbVersion, DEFAULT_MANIFEST_URL } from 'clockworktz'
+import { tzdb } from 'clockworktz/tzdb'
 
 // Pin an exact IANA release: identical results on every platform,
 // and keep it fresh with Ed25519-signed updates
@@ -166,7 +166,7 @@ fromUTC('1850-01-01T00:00:00Z', 'Europe/Amsterdam')
     code: `
 'use client'
 import { useEffect, useState } from 'react'
-import { format, onTick, watchZoneTransitions } from 'clockwork-tz'
+import { format, onTick, watchZoneTransitions } from 'clockworktz'
 
 export function WorldClock({ zone }: { zone: string }) {
   const [now, setNow] = useState(() => new Date())

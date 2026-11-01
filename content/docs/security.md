@@ -1,6 +1,6 @@
 # Security & signing
 
-clockwork-tz can download timezone data at runtime. Bad timezone data can silently shift every time an app shows, so updates are signed, hashed and version-checked before they're used. This page describes exactly what's verified.
+clockworktz can download timezone data at runtime. Bad timezone data can silently shift every time an app shows, so updates are signed, hashed and version-checked before they're used. This page describes exactly what's verified.
 
 ## Reporting a vulnerability
 
@@ -8,7 +8,7 @@ Please email [hello@adamrichardturner.dev](mailto:hello@adamrichardturner.dev) r
 
 ## What gets published
 
-Each release of the [`clockwork-tz-data`](https://www.npmjs.com/package/clockwork-tz-data) package contains:
+Each release of the [`clockworktz-data`](https://www.npmjs.com/package/clockworktz-data) package contains:
 
 - `tzdb.json`: the compiled data
 - `manifest.json`: `{ version, releaseDate, dataUrl, sha256, signature, keyId }`
@@ -17,14 +17,14 @@ Each release of the [`clockwork-tz-data`](https://www.npmjs.com/package/clockwor
 {
   "version": "2026f",
   "releaseDate": "2026-11-01T06:57:21.666Z",
-  "dataUrl": "https://cdn.jsdelivr.net/npm/clockwork-tz-data@1.2026.6/tzdb.json",
+  "dataUrl": "https://cdn.jsdelivr.net/npm/clockworktz-data@1.2026.6/tzdb.json",
   "sha256": "4ce4303530d44f85a22fc801f9289d91a358005523e678cf3bc6e7ffa5e7c29c",
   "signature": "Txd4kbmGHdec9E/cCAIADYc7j48YYmO7X1VpVZk+VePCWfPCdvyIIyXzV/tjQ9K/I2oEohfIstN+8Uwk3fJ9Dg==",
   "keyId": "63afe89a3ee676d5"
 }
 ```
 
-Package versions are `1.<year>.<release>`, so tzdb `2026f` is `1.2026.6`. The library fetches `https://cdn.jsdelivr.net/npm/clockwork-tz-data@1/manifest.json` (exported as `DEFAULT_MANIFEST_URL`).
+Package versions are `1.<year>.<release>`, so tzdb `2026f` is `1.2026.6`. The library fetches `https://cdn.jsdelivr.net/npm/clockworktz-data@1/manifest.json` (exported as `DEFAULT_MANIFEST_URL`).
 
 ## What's signed
 
@@ -53,7 +53,7 @@ Version order follows tzdb naming (`2026a` < `2026f` < `2027a`) and is exposed a
 
 ## Where the data comes from
 
-The data package is generated in the [clockwork-tz repository](https://github.com/adamrichardturner/clockwork-tz) by a scheduled workflow:
+The data package is generated in the [clockworktz repository](https://github.com/adamrichardturner/clockworktz) by a scheduled workflow:
 
 1. It downloads the IANA release and **verifies IANA's own signatures** on the downloads.
 2. It builds `zic` and compiles the data.
@@ -86,4 +86,4 @@ await initClockworkTZ({
 
 ## Without the network
 
-If you never pass `manifestURL`, clockwork-tz makes no network requests at all. The `system-intl` engine never does.
+If you never pass `manifestURL`, clockworktz makes no network requests at all. The `system-intl` engine never does.

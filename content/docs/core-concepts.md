@@ -1,12 +1,12 @@
 # Core concepts
 
-Most timezone bugs come from mixing up two different things: an **instant** and a **wall time**. clockwork-tz keeps them separate, and every function tells you which one it expects.
+Most timezone bugs come from mixing up two different things: an **instant** and a **wall time**. clockworktz keeps them separate, and every function tells you which one it expects.
 
 ## Instants and wall time
 
-An **instant** is a single point on the global timeline. `2024-07-15T14:00:00Z` is the same instant everywhere on Earth. In clockwork-tz an instant is a `Date`, epoch milliseconds, or an ISO string that carries an offset (`Z`, `+05:45`, `-0330`).
+An **instant** is a single point on the global timeline. `2024-07-15T14:00:00Z` is the same instant everywhere on Earth. In clockworktz an instant is a `Date`, epoch milliseconds, or an ISO string that carries an offset (`Z`, `+05:45`, `-0330`).
 
-A **wall time** is what a clock on the wall shows: `2024-07-15 16:30`. On its own it is not a point in time. It only becomes one when you say which zone's wall it hangs on, and even then DST can make it [ambiguous or impossible](./dst-disambiguation.md). In clockwork-tz a wall time is an ISO string **without** an offset, or an object of fields.
+A **wall time** is what a clock on the wall shows: `2024-07-15 16:30`. On its own it is not a point in time. It only becomes one when you say which zone's wall it hangs on, and even then DST can make it [ambiguous or impossible](./dst-disambiguation.md). In clockworktz a wall time is an ISO string **without** an offset, or an object of fields.
 
 | Function                                | Takes        | Returns                              |
 | --------------------------------------- | ------------ | ------------------------------------ |
@@ -19,7 +19,7 @@ A **wall time** is what a clock on the wall shows: `2024-07-15 16:30`. On its ow
 `convert` looks at its input to decide which it is: a string without an offset is read as wall time in `fromZone`, and anything else (a `Date`, a number, or a string with an offset) is treated as an instant and `fromZone` doesn't affect the result.
 
 ```ts
-import { convert } from 'clockwork-tz'
+import { convert } from 'clockworktz'
 
 // Wall time: 09:00 in Paris
 convert('2024-07-15T09:00:00', 'Europe/Paris', 'Asia/Tokyo').local
@@ -81,14 +81,14 @@ convert('2024-07-15T09:00:00', 'America/Los_Angeles', 'Asia/Kathmandu', {
 
 ## Host independence
 
-clockwork-tz never reads a date in the timezone of the machine running the code. That is the most common source of "works on my machine" timezone bugs: `new Date('2024-07-15T14:00:00')` means 14:00 in whatever zone the server or the user's laptop happens to be in.
+clockworktz never reads a date in the timezone of the machine running the code. That is the most common source of "works on my machine" timezone bugs: `new Date('2024-07-15T14:00:00')` means 14:00 in whatever zone the server or the user's laptop happens to be in.
 
 - Functions that take an instant reject strings without an offset rather than guessing.
 - [Parsing](./parsing.md) functions read offset-less strings in an explicit `defaultTimezone`, which is `UTC` unless you say otherwise.
 - The test suite runs under several host timezones (`UTC`, `America/New_York`, `Australia/Lord_Howe`, `Asia/Kathmandu`) to prove it.
 
 ```ts
-import { fromUTC } from 'clockwork-tz'
+import { fromUTC } from 'clockworktz'
 
 fromUTC('2024-07-15T14:00:00', 'UTC')
 // throws TimezoneError: Invalid ISO date string: 2024-07-15T14:00:00
@@ -105,7 +105,7 @@ Any function that takes a zone accepts:
 - **Fixed offsets** like `+05:30` or `-08:00`. These never have DST.
 
 ```ts
-import { isValidTimeZone, canonicalizeTimeZone, getUserTimeZone } from 'clockwork-tz'
+import { isValidTimeZone, canonicalizeTimeZone, getUserTimeZone } from 'clockworktz'
 
 isValidTimeZone('Asia/Calcutta') // true
 isValidTimeZone('+05:30') // true
@@ -120,7 +120,7 @@ getUserTimeZone() // the runtime's zone, e.g. 'America/Los_Angeles' (falls back 
 An invalid zone throws a [`TimezoneError`](./errors.md), except in the predicates `isValidTimeZone` and `isDST`, which return `false`.
 
 > [!WARNING]
-> `Etc/GMT+5` means UTC**−5**. The `Etc` zones follow POSIX, where the sign is inverted. clockwork-tz handles this correctly, but it surprises people reading the code. Prefer a fixed offset like `-05:00` when you mean a fixed offset.
+> `Etc/GMT+5` means UTC**−5**. The `Etc` zones follow POSIX, where the sign is inverted. clockworktz handles this correctly, but it surprises people reading the code. Prefer a fixed offset like `-05:00` when you mean a fixed offset.
 
 ## Engines
 

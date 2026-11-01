@@ -27,13 +27,13 @@ const features = [
   {
     Icon: Cpu,
     title: 'Zero dependencies',
-    body: "The core is built on the platform's Intl API: about 19 kB gzipped, ESM and CommonJS, with complete TypeScript types.",
+    body: "The core is built on the platform's Intl API: about 21 kB gzipped, ESM and CommonJS, with complete TypeScript types.",
     href: '/docs/getting-started',
   },
   {
     Icon: Database,
     title: 'Deterministic tzdb engine',
-    body: 'Opt in to a pinned IANA release (28 kB gzipped) for identical results everywhere, with exact DST flags and local mean time.',
+    body: 'Opt in to a pinned IANA release (30 kB gzipped) for identical results everywhere, with exact DST flags and local mean time.',
     href: '/docs/engines#embedded-tzdb',
   },
   {
@@ -96,8 +96,8 @@ export default async function Home() {
       {
         '@type': 'WebSite',
         '@id': `${site.url}/#website`,
-        name: 'clockwork-tz',
-        alternateName: ['clockwork tz', 'clockworktz'],
+        name: 'clockworktz',
+        alternateName: ['clockworktz', 'clockworktz'],
         url: site.url,
         description: homeDescription,
         inLanguage: 'en',
@@ -106,7 +106,7 @@ export default async function Home() {
       {
         '@type': 'SoftwareSourceCode',
         '@id': `${site.url}/#software`,
-        name: 'clockwork-tz',
+        name: 'clockworktz',
         description: site.description,
         url: site.url,
         image: `${site.url}/opengraph-image`,
@@ -139,14 +139,14 @@ export default async function Home() {
             </a>
             <h1 className="mt-6 text-5xl font-semibold tracking-tight text-balance sm:text-6xl">
               <span className="mb-3 block font-mono text-base font-medium tracking-normal text-fg-muted sm:text-lg">
-                clockwork-tz
+                clockworktz
               </span>
               Timezones that get the <em className="font-serif font-normal text-accent">weird zones</em> right.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-fg-muted text-pretty">
               A zero-dependency timezone library for JavaScript and TypeScript. Half-hour and 45-minute offsets,
               30-minute DST, skipped days, negative DST and historical local mean time, with DST gaps and overlaps
-              resolved exactly the way Temporal does. In about 19 kB.
+              resolved exactly the way Temporal does. In about 21 kB.
             </p>
             <div className="mt-8 flex flex-col gap-4">
               <InstallCommand />
@@ -202,7 +202,7 @@ export default async function Home() {
 
       {/* Features */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <SectionHeading eyebrow="Why clockwork-tz" title="Small, strict and exact" />
+        <SectionHeading eyebrow="Why clockworktz" title="Small, strict and exact" />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map(({ Icon, title, body, href }) => (
             <li key={title}>
@@ -255,8 +255,8 @@ export default async function Home() {
             },
             {
               name: 'embedded-tzdb',
-              tag: 'Opt-in · 28 kB gz',
-              body: 'Uses a compiled IANA tzdb release from the clockwork-tz/tzdb subpath. You only pay for it if you import it.',
+              tag: 'Opt-in · 30 kB gz',
+              body: 'Uses a compiled IANA tzdb release from the clockworktz/tzdb subpath. You only pay for it if you import it.',
               points: [
                 'Identical results on every platform',
                 'Exact DST flags, abbreviations and local mean time',

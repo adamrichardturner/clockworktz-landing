@@ -1,9 +1,9 @@
 # Formatting
 
-clockwork-tz has a built-in, dependency-free formatter that supports a [date-fns](https://date-fns.org/docs/format)-compatible subset of tokens. It formats an instant as seen in a zone, using that zone's offset at that instant.
+clockworktz has a built-in, dependency-free formatter that supports a [date-fns](https://date-fns.org/docs/format)-compatible subset of tokens. It formats an instant as seen in a zone, using that zone's offset at that instant.
 
 ```ts
-import { format } from 'clockwork-tz'
+import { format } from 'clockworktz'
 
 format('2024-07-15T14:00:00Z', 'Pacific/Chatham', 'yyyy-MM-dd HH:mm xxx')
 // '2024-07-16 02:45 +12:45'
@@ -28,7 +28,7 @@ format('2024-07-05T09:05:07Z', 'Europe/Berlin', 'EEEE d. MMMM yyyy', 'de')
 The same patterns work anywhere a `format` option is accepted, such as `fromUTC`, `interpretLocal` and `convert`:
 
 ```ts
-import { convert } from 'clockwork-tz'
+import { convert } from 'clockworktz'
 
 convert('2024-09-12T10:00:00', 'Europe/London', 'Asia/Kolkata', { format: 'EEE HH:mm' }).local
 // 'Thu 14:30'
@@ -100,7 +100,7 @@ format('1880-01-01T00:00:00Z', 'Europe/Amsterdam', 'xxxxx')
 | `iso8601`    | `yyyy-MM-dd'T'HH:mm:ssxxx`                 | `2024-03-15T07:30:00-07:00`                                  |
 
 ```ts
-import { formatWithPattern, FORMAT_PATTERNS, DEFAULT_FORMAT_PATTERN } from 'clockwork-tz'
+import { formatWithPattern, FORMAT_PATTERNS, DEFAULT_FORMAT_PATTERN } from 'clockworktz'
 
 formatWithPattern('2024-03-15T14:30:00Z', 'America/Los_Angeles', 'human')
 // 'March 15, 2024 at 7:30 AM PDT'
@@ -128,7 +128,7 @@ Formats for a common purpose. In `Europe/London`, `2024-03-15T14:30:00Z` gives:
 Formats a range. When both ends fall on the same local day, the date is shown once:
 
 ```ts
-import { formatRange } from 'clockwork-tz'
+import { formatRange } from 'clockworktz'
 
 formatRange('2024-03-15T14:30:00Z', '2024-03-15T16:00:00Z', 'Europe/London')
 // '2024-03-15 14:30 – 16:00 GMT'
@@ -150,7 +150,7 @@ formatRange('2024-03-15T14:30:00Z', '2024-03-17T16:00:00Z', 'Europe/London', {
 The absolute time between two instants in words:
 
 ```ts
-import { formatDuration } from 'clockwork-tz'
+import { formatDuration } from 'clockworktz'
 
 formatDuration('2024-03-15T14:30:00Z', '2024-03-17T16:45:30Z')
 // '2 days, 2 hours'
@@ -174,7 +174,7 @@ Durations measure elapsed time, so a "day" is always 24 hours, even across a DST
 "2 hours ago" or "in 3 days" for anything within a week; beyond that, the date in `zone`:
 
 ```ts
-import { formatRelative } from 'clockwork-tz'
+import { formatRelative } from 'clockworktz'
 
 const now = '2024-03-15T14:30:00Z'
 formatRelative('2024-03-15T12:30:00Z', 'UTC', now) // '2 hours ago'
@@ -193,7 +193,7 @@ formatRelative('2024-04-15T14:30:00Z', 'Asia/Tokyo', now) // '2024-04-15'
 Formats an offset in minutes as `±HH:mm`:
 
 ```ts
-import { formatOffset } from 'clockwork-tz'
+import { formatOffset } from 'clockworktz'
 
 formatOffset(345) // '+05:45'
 formatOffset(-570) // '-09:30'
@@ -202,4 +202,4 @@ formatOffset(0) // '+00:00'
 
 ## Versus `Intl.DateTimeFormat`
 
-`Intl.DateTimeFormat` is great for locale-appropriate output ("15/03/2024" vs "3/15/2024"). Use clockwork-tz's formatter when you need an exact, stable layout (logs, filenames, APIs, UI with a fixed design) or tokens `Intl` doesn't give you directly, like `xxx`. The two work together: pass the same zone to both.
+`Intl.DateTimeFormat` is great for locale-appropriate output ("15/03/2024" vs "3/15/2024"). Use clockworktz's formatter when you need an exact, stable layout (logs, filenames, APIs, UI with a fixed design) or tokens `Intl` doesn't give you directly, like `xxx`. The two work together: pass the same zone to both.
