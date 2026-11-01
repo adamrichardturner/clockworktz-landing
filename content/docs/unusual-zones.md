@@ -89,5 +89,5 @@ The tzdb stores rules, not just a list of dates. clockworktz's embedded engine e
 
 - Exact fixtures for every zone above, shared by both engines.
 - The embedded data is checked against ICU for every zone from 1970 onwards.
-- The suite runs under several host timezones (`UTC`, `America/New_York`, `Australia/Lord_Howe`, `Asia/Kathmandu`), because timezone bugs often only appear when the host isn't at UTC+0.
+- The suite runs under several host timezones (`UTC`, `America/New_York`, `Australia/Lord_Howe`, `Asia/Kathmandu`, `Pacific/Chatham`), because timezone bugs often only appear when the host isn't at UTC+0.
 - Browser tests run in Chromium, Firefox and WebKit.

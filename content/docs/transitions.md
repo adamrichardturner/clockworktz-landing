@@ -25,6 +25,8 @@ getNextTransition('Australia/Lord_Howe', '2024-07-15T14:00:00Z')
 getNextTransition('Asia/Tokyo', '2024-01-01T00:00:00Z') // null: Japan has no DST
 ```
 
+It's also `null` for fixed offsets such as `+05:30`, and for invalid zones.
+
 Offsets are in minutes. Lord Howe's DST is only 30 minutes long, from `+10:30` (630) to `+11:00` (660).
 
 ### `getPreviousTransition(zone, from?)`
@@ -137,7 +139,11 @@ Granularity below 100 ms is clamped to 100 ms (with a warning).
 Each watcher returns a stop function; call it when the component unmounts or the job ends. To stop everything at once, for example in tests or on server shutdown:
 
 ```ts
-import { cleanupAllWatchers, getWatcherStats } from 'clockworktz'
+import { cleanupAllWatchers, getWatcherStats, onTick, watchZoneTransitions } from 'clockworktz'
+
+watchZoneTransitions('Europe/London', rerender)
+watchZoneTransitions('Asia/Tokyo', rerender)
+onTick(rerender, 1000)
 
 getWatcherStats() // { transitionWatchers: 2, tickWatchers: 1 }
 cleanupAllWatchers()

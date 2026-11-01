@@ -98,14 +98,14 @@ interpretLocal('2024-03-10T02:30:00', 'America/New_York').local
 
 **Wall times** (what a clock on the wall shows, with no zone attached) can be:
 
-- an ISO string **without an offset**, such as `'2024-03-10T02:30:00'`
+- an ISO string **without an offset**, such as `'2024-03-10T02:30:00'`. A space works in place of `T`, and seconds are optional: `'2024-03-10 02:30'`
 - an object of fields: `{ year, month, day, hour?, minute?, second?, millisecond? }`
 
 **Zones** can be:
 
 - IANA identifiers, such as `'America/New_York'`
 - IANA links, such as `'Asia/Calcutta'` (canonicalized to `Asia/Kolkata` where the engine knows the link)
-- fixed offsets, such as `'+05:30'`
+- fixed offsets, such as `'+05:30'`, `'-0930'` or `'+05'`
 
 > [!TIP]
 > Months are 1-based in field objects (`month: 3` is March), unlike `Date#getMonth()`.

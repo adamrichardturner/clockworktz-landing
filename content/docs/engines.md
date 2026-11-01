@@ -118,7 +118,7 @@ fromUTC('2024-07-15T14:00:00Z', 'Asia/Kathmandu').local // '2024-07-15 19:45:00.
 
 ### Caching and tabs
 
-- Verified data is cached per manifest and key, in `localStorage` in browsers and in memory in Node.js (which never touches Node's experimental `localStorage`, so no warning is printed). A cached copy younger than 24 hours is used without a network request.
+- Verified data is cached per manifest and key, in `localStorage` in browsers and in memory in Node.js (which never touches Node's experimental `localStorage`, so no warning is printed). A cached copy younger than 24 hours is used without a network request, and requests time out after 30 seconds.
 - Other tabs using the same manifest pick up new data through `BroadcastChannel` and load it too, so one tab's download serves them all.
 - `onDataUpdate(version => …)` fires whenever new data is loaded, whether this tab fetched it or another one did. It returns an unsubscribe function.
 
@@ -127,10 +127,11 @@ fromUTC('2024-07-15T14:00:00Z', 'Asia/Kathmandu').local // '2024-07-15 19:45:00.
 ```ts
 import { refreshTimezoneData, getStatus, dispose } from 'clockworktz'
 
-await refreshTimezoneData() // true if newer data was loaded
+// Resolves true if newer verified data was loaded, false if you already have the latest
+await refreshTimezoneData()
 
 getStatus()
-// { engine: 'embedded-tzdb', tzdbVersion: '2026f', dataLoaded: true, lastUpdate: Date }
+// { engine: 'embedded-tzdb', tzdbVersion: '2026f', dataLoaded: true, lastUpdate: … }
 
 dispose() // stop the update timer and cross-tab listener (e.g. on server shutdown)
 ```

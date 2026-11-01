@@ -1,5 +1,5 @@
 // Snippets shown on the landing page. Every output comment is the real result
-// from clockworktz 1.0.0; keep them in sync with content/docs.
+// from clockworktz 1.0.1; keep them in sync with content/docs.
 
 export const heroExample = `
 import { fromUTC, convert, format } from 'clockworktz'

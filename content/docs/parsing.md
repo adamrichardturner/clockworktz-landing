@@ -20,11 +20,13 @@ parse('2024-07-15T14:00:00', { defaultTimezone: 'Asia/Tokyo' })
 | `2024-07-15T14:00:00+05:45`      | Instant with offset                       |
 | `2024-07-15T14:00:00-0330`       | Instant with basic offset                 |
 | `2024-07-15T14:00:00+00:19:32`   | Instant with an offset that has seconds   |
-| `2024-07-15 14:00:00Z`           | A space instead of `T` works too          |
+| `2024-07-15T14:00-03`            | Instant with an hours-only offset         |
+| `2024-07-15 14:00+05:45`         | A space instead of `T`, seconds optional  |
 | `2024-07-15T14:00:00.250`        | Wall time in `defaultTimezone`            |
+| `2024-07-15 14:00`               | Wall time, space and no seconds           |
 | `2024-07-15`                     | Midnight wall time in `defaultTimezone`   |
 
-Wall times read in a zone with DST use `compatible` [disambiguation](./dst-disambiguation.md). Use `interpretLocal` if you need a different strategy.
+Fractions of a second may have 1 to 9 digits; the result keeps millisecond precision. Wall times read in a zone with DST use `compatible` [disambiguation](./dst-disambiguation.md). Use `interpretLocal` if you need a different strategy.
 
 ## `ParseOptions`
 

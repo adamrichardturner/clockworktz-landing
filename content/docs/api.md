@@ -89,7 +89,7 @@ interface ConvertOptions extends FormatOptions {
 | -------------------------------------------------- | --------------------------------------------------------------- |
 | `getZoneInfo(input: DateInput, zone: string)`      | `ZoneInfo`: `{ offsetSeconds, isDST, abbreviation }`            |
 | `getOffset(input: DateInput, zone: string)`        | `number`: offset in minutes                                     |
-| `isDST(input: DateInput, zone: string)`            | `boolean`; `false` for invalid zones                            |
+| `isDST(input: DateInput, zone: string)`            | `boolean`; `false` for invalid zones and fixed offsets          |
 | `isValidTimeZone(zone: string)`                    | `boolean`; accepts IANA names, links and fixed offsets          |
 | `canonicalizeTimeZone(zone: string)`               | `string`: `'Asia/Calcutta'` → `'Asia/Kolkata'`                  |
 | `getUserTimeZone()`                                | `string`: the runtime's zone, canonicalized, or `'UTC'`         |
@@ -223,7 +223,7 @@ interface TransitionInfo {
 | `getInitOptions()`                    | A copy of the last `ClockworkOptions`                               |
 | `onDataUpdate(callback: (version: string) => void)` | Unsubscribe function                                  |
 | `refreshTimezoneData()`               | `Promise<boolean>`: true if newer data was loaded                   |
-| `VERSION`                             | The library version, e.g. `'1.0.0'`                                 |
+| `VERSION`                             | The library version, e.g. `'1.0.1'`                                 |
 
 ```ts
 interface ClockworkOptions {
@@ -315,7 +315,14 @@ interface Transition {
 ## `clockworktz/tzdb`
 
 ```ts
-import { tzdb } from 'clockworktz/tzdb'
+import { tzdb, TZDB_VERSION } from 'clockworktz/tzdb'
+import type { TzdbData, CompactZone } from 'clockworktz/tzdb'
+
+TZDB_VERSION // '2026f'
 ```
 
-The compiled IANA tzdb snapshot (release `2026f` in 1.0.0), for `initClockworkTZ({ engine: 'embedded-tzdb', data: tzdb })`. About 30 kB gzipped.
+| Export         | Description                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| `tzdb`         | The compiled IANA tzdb snapshot, for `initClockworkTZ({ engine: 'embedded-tzdb', data: tzdb })`. About 30 kB gzipped |
+| `TZDB_VERSION` | The IANA release `tzdb` was built from: `'2026f'` in 1.0.1                                   |
+| `TzdbData`, `CompactZone` | Types describing the data format                                                  |

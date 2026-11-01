@@ -85,7 +85,7 @@ clockworktz never reads a date in the timezone of the machine running the code. 
 
 - Functions that take an instant reject strings without an offset rather than guessing.
 - [Parsing](./parsing.md) functions read offset-less strings in an explicit `defaultTimezone`, which is `UTC` unless you say otherwise.
-- The test suite runs under several host timezones (`UTC`, `America/New_York`, `Australia/Lord_Howe`, `Asia/Kathmandu`) to prove it.
+- The test suite runs under several host timezones (`UTC`, `America/New_York`, `Australia/Lord_Howe`, `Asia/Kathmandu`, `Pacific/Chatham`) to prove it.
 
 ```ts
 import { fromUTC } from 'clockworktz'
@@ -102,17 +102,22 @@ Any function that takes a zone accepts:
 
 - **IANA identifiers** like `Europe/London` or `Pacific/Chatham`.
 - **Links** (aliases) like `Asia/Calcutta`, `US/Eastern` or `Europe/Kiev`. Use `canonicalizeTimeZone` to get the primary name.
-- **Fixed offsets** like `+05:30` or `-08:00`. These never have DST.
+- **Fixed offsets** in `±HH:mm`, `±HHmm` or `±HH` form, like `+05:30`, `-0930` or `+05`. These never have DST.
+
+Names are matched case-insensitively, and `canonicalizeTimeZone` returns the standard spelling.
 
 ```ts
 import { isValidTimeZone, canonicalizeTimeZone, getUserTimeZone } from 'clockworktz'
 
 isValidTimeZone('Asia/Calcutta') // true
 isValidTimeZone('+05:30') // true
+isValidTimeZone('-0930') // true
 isValidTimeZone('Nope/Zone') // false
 
 canonicalizeTimeZone('Asia/Calcutta') // 'Asia/Kolkata'
 canonicalizeTimeZone('Europe/Kiev') // 'Europe/Kyiv'
+canonicalizeTimeZone('us/eastern') // 'America/New_York'
+canonicalizeTimeZone('+0530') // '+05:30'
 
 getUserTimeZone() // the runtime's zone, e.g. 'America/Los_Angeles' (falls back to 'UTC')
 ```

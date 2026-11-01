@@ -77,6 +77,8 @@ getZoneCountries('Europe/Zurich')
 
 Country data comes from IANA's `zone1970.tab` with the embedded engine, and from `Intl.Locale#getTimeZones` with the Intl engine where the runtime supports it. Not every browser does; without it, `countryCodes` is empty and the `country` filter matches nothing. If you build a country-based picker for browsers, use the [embedded engine](./engines.md#embedded-tzdb).
 
+`zone1970.tab` lists every country that shares a zone's clock since 1970, so with the embedded engine a zone can appear under more than one country: `getZoneCountries('Asia/Tokyo')` is `['JP', 'AU']`, and `listTimeZones({ country: 'AU' })` includes `Asia/Tokyo` alongside the Australian zones.
+
 Fixed offsets and zones not tied to a country (such as `UTC`) return `[]`.
 
 ## Example: a grouped `<select>`
