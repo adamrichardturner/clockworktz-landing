@@ -15,6 +15,9 @@ export function SiteHeader() {
           <Link href="/docs" className="hover:text-fg">
             Docs
           </Link>
+          <Link href="/demo" className="hover:text-fg">
+            Demo
+          </Link>
           <Link href="/docs/api" className="hover:text-fg">
             API
           </Link>
@@ -23,20 +26,23 @@ export function SiteHeader() {
           </Link>
         </nav>
         <div className="ml-auto flex items-center gap-1.5">
-          <Link href="/docs" className="px-2 text-sm text-fg-muted hover:text-fg sm:hidden">
+          <Link href="/docs" className="px-1.5 text-sm text-fg-muted hover:text-fg sm:hidden">
             Docs
+          </Link>
+          <Link href="/demo" className="px-1.5 text-sm text-fg-muted hover:text-fg sm:hidden">
+            Demo
           </Link>
           <a
             href={site.npm}
             aria-label="clockworktz on npm"
-            className="hidden size-8 min-[400px]:grid place-items-center rounded-full text-fg-muted hover:text-fg"
+            className="hidden size-8 place-items-center min-[480px]:grid rounded-full text-fg-muted hover:text-fg"
           >
             <NpmIcon className="size-4" />
           </a>
           <a
             href={site.repo}
             aria-label="clockworktz on GitHub"
-            className="grid size-8 place-items-center rounded-full text-fg-muted hover:text-fg"
+            className="hidden size-8 place-items-center min-[440px]:grid rounded-full text-fg-muted hover:text-fg"
           >
             <GitHubIcon className="size-4" />
           </a>

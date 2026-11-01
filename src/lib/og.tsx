@@ -147,7 +147,21 @@ export async function renderHomeOg() {
 }
 
 /** A docs page card: section, title and summary */
-export async function renderDocOg({ section, title, description, url }: { section: string; title: string; description: string; url: string }) {
+export async function renderDocOg({
+  section,
+  title,
+  description,
+  url,
+  eyebrow = `Docs · ${section}`,
+  cta = 'Read the docs →',
+}: {
+  section: string
+  title: string
+  description: string
+  url: string
+  eyebrow?: string
+  cta?: string
+}) {
   const summary = description.length > 150 ? `${description.slice(0, 147).trimEnd()}…` : description
   return new ImageResponse(
     (
@@ -155,12 +169,12 @@ export async function renderDocOg({ section, title, description, url }: { sectio
         footer={
           <>
             <span>{url}</span>
-            <span style={{ color: colors.fg }}>Read the docs →</span>
+            <span style={{ color: colors.fg }}>{cta}</span>
           </>
         }
       >
         <div style={{ fontFamily: 'Geist Mono', fontSize: 24, color: colors.accent, textTransform: 'uppercase', letterSpacing: 2 }}>
-          {`Docs · ${section}`}
+          {eyebrow}
         </div>
         <div style={{ marginTop: 18, fontSize: 76, fontWeight: 600, letterSpacing: -2.5, lineHeight: 1.05 }}>{title}</div>
         <div style={{ marginTop: 24, fontSize: 30, lineHeight: 1.4, color: colors.muted, maxWidth: 1000 }}>{summary}</div>

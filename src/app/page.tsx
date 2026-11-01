@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, BadgeCheck, Cpu, Database, Globe2, ShieldCheck, Split, Timer } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Play, Cpu, Database, Globe2, ShieldCheck, Split, Timer } from 'lucide-react'
 import { CodeBlock } from '@/components/code-block'
 import { InstallCommand } from '@/components/install-command'
 import { CodeTabs } from '@/components/landing/code-tabs'
@@ -157,6 +157,12 @@ export default async function Home() {
                 >
                   Get started <ArrowRight className="size-4" />
                 </Link>
+                <Link
+                  href="/demo"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-medium hover:border-border-strong"
+                >
+                  <Play className="size-4" /> Live demo
+                </Link>
                 <a
                   href={site.repo}
                   className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-medium hover:border-border-strong"
@@ -191,12 +197,14 @@ export default async function Home() {
           <div className="mt-10">
             <DstExplorer />
           </div>
-          <Link
-            href="/docs/dst-disambiguation"
-            className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
-          >
-            Read the disambiguation guide <ArrowRight className="size-4" />
-          </Link>
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/docs/dst-disambiguation" className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline">
+              Read the disambiguation guide <ArrowRight className="size-4" />
+            </Link>
+            <Link href="/demo#dst" className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline">
+              Open the DST lab <ArrowRight className="size-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -314,6 +322,12 @@ export default async function Home() {
             className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg hover:opacity-90"
           >
             Read the docs <ArrowRight className="size-4" />
+          </Link>
+          <Link
+            href="/demo"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-medium hover:border-border-strong"
+          >
+            Try the live demo
           </Link>
           <Link
             href="/docs/recipes"

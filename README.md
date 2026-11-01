@@ -4,6 +4,7 @@ The website and documentation for [clockworktz](https://github.com/adamrichardtu
 
 - **Landing page:** [clockworktz.dev](https://clockworktz.dev)
 - **Docs:** [clockworktz.dev/docs](https://clockworktz.dev/docs), also readable on GitHub in [`content/docs`](./content/docs)
+- **Live demo:** [clockworktz.dev/demo](https://clockworktz.dev/demo), every feature running in the browser on the real `clockworktz` package (source in [`src/components/demo`](./src/components/demo))
 
 ## Docs are plain Markdown
 

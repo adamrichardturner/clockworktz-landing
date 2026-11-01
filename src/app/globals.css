@@ -16,6 +16,17 @@
   --accent-soft: #fdf1e3;
   --code-bg: #f6f8fa;
   --ring: #d97706;
+  /* Chart colors, validated for contrast and colour-blind separation */
+  --chart-blue: #3d6fb0;
+  --chart-amber: #b45309;
+  --grid: #ece8e1;
+  --tok-keyword: #cf222e;
+  --tok-string: #0a3069;
+  --tok-comment: #6e7781;
+  --tok-function: #8250df;
+  --tok-number: #0550ae;
+  --danger: #cf222e;
+  --success: #1a7f37;
   color-scheme: light;
 }
 
@@ -33,6 +44,16 @@
   --accent-soft: #2a1d0b;
   --code-bg: #0d1117;
   --ring: #f59e0b;
+  --chart-blue: #5b8fd4;
+  --chart-amber: #c97f0a;
+  --grid: #24211e;
+  --tok-keyword: #ff7b72;
+  --tok-string: #a5d6ff;
+  --tok-comment: #8b949e;
+  --tok-function: #d2a8ff;
+  --tok-number: #79c0ff;
+  --danger: #f85149;
+  --success: #3fb950;
   color-scheme: dark;
 }
 
@@ -49,6 +70,11 @@
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
   --color-code-bg: var(--code-bg);
+  --color-chart-blue: var(--chart-blue);
+  --color-chart-amber: var(--chart-amber);
+  --color-grid: var(--grid);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
