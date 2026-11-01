@@ -7,7 +7,7 @@ There are two engines. They expose the same API and are tested against the same 
 |                         | `system-intl` (default)                    | `embedded-tzdb`                                        |
 | ----------------------- | ------------------------------------------ | ------------------------------------------------------ |
 | Data source             | The runtime's ICU data via `Intl`          | A compiled IANA tzdb release                           |
-| Extra bundle size       | none                                       | ~30 kB gzipped (`clockworktz/tzdb`)                   |
+| Extra bundle size       | none                                       | ~30 kB gzipped (`clockworktz/tzdb`)                    |
 | Same results everywhere | No: depends on the runtime's tzdb version  | Yes                                                    |
 | `isDST`                 | Derived from January and July offsets      | Exact, from the tzdb                                   |
 | Abbreviations           | What `Intl` reports, for example `+01`     | The tzdb's, for example `BST`                          |
@@ -101,9 +101,24 @@ An update is only applied when **all** of these hold:
 
 Anything else keeps the current data. `initClockworkTZ` never rejects because of a failed update; it logs a warning and carries on.
 
+### Without bundled data
+
+You can leave out `data` and load everything from the manifest, which keeps the tzdb snapshot out of your bundle entirely. Until the first download has been verified there's no data at all, so `await` the promise before converting:
+
+```ts
+import { initClockworkTZ, fromUTC, DEFAULT_MANIFEST_URL } from 'clockworktz'
+
+await initClockworkTZ({ engine: 'embedded-tzdb', manifestURL: DEFAULT_MANIFEST_URL })
+
+fromUTC('2024-07-15T14:00:00Z', 'Asia/Kathmandu').local // '2024-07-15 19:45:00.000'
+```
+
+> [!WARNING]
+> Without bundled `data`, a failed or offline first load leaves the engine empty, and every zone is reported as invalid (`TimezoneError: Invalid timezone: Asia/Kathmandu`). `getStatus().dataLoaded` tells you whether it worked. Pass `data: tzdb` as well if the app must work offline.
+
 ### Caching and tabs
 
-- Verified data is cached per manifest and key, in `localStorage` in browsers and in memory in Node.js. A cached copy younger than 24 hours is used without a network request.
+- Verified data is cached per manifest and key, in `localStorage` in browsers and in memory in Node.js (which never touches Node's experimental `localStorage`, so no warning is printed). A cached copy younger than 24 hours is used without a network request.
 - Other tabs using the same manifest pick up new data through `BroadcastChannel` and load it too, so one tab's download serves them all.
 - `onDataUpdate(version => …)` fires whenever new data is loaded, whether this tab fetched it or another one did. It returns an unsubscribe function.
 

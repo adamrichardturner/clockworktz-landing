@@ -27,7 +27,7 @@ const features = [
   {
     Icon: Cpu,
     title: 'Zero dependencies',
-    body: "The core is built on the platform's Intl API: about 21 kB gzipped, ESM and CommonJS, with complete TypeScript types.",
+    body: "The core is built on the platform's Intl API: about 21 kB gzipped (11 kB minified if you only import fromUTC), ESM and CommonJS, with complete TypeScript types.",
     href: '/docs/getting-started',
   },
   {
@@ -97,7 +97,7 @@ export default async function Home() {
         '@type': 'WebSite',
         '@id': `${site.url}/#website`,
         name: 'clockworktz',
-        alternateName: ['clockworktz', 'clockworktz'],
+        alternateName: ['clockwork-tz', 'clockwork tz'],
         url: site.url,
         description: homeDescription,
         inLanguage: 'en',

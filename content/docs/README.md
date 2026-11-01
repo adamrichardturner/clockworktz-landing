@@ -17,7 +17,7 @@ interpretLocal('2024-03-10T02:30:00', 'America/New_York').local
 
 ## At a glance
 
-- **Zero runtime dependencies.** The core uses the platform's `Intl` API (about 21 kB gzipped).
+- **Zero runtime dependencies.** The core uses the platform's `Intl` API (about 21 kB gzipped, about 11 kB minified when you import only `fromUTC`).
 - **Host independent.** Results never depend on the timezone of the machine running the code.
 - **Two engines.** `system-intl` uses the OS or browser timezone data. `embedded-tzdb` uses a pinned IANA tzdb release (30 kB gzipped) for identical results everywhere, with optional signed updates.
 - **ESM and CommonJS**, with complete TypeScript types.

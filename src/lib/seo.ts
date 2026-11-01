@@ -4,6 +4,8 @@ import { site } from './site'
 export const keywords = [
   'clockworktz',
   'clockworktz npm',
+  'clockwork-tz',
+  'clockwork tz',
   'timezone library',
   'javascript timezone',
   'typescript timezone',

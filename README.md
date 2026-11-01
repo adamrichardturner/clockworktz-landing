@@ -13,9 +13,9 @@ Every docs page is a GitHub-flavoured Markdown file in [`content/docs`](./conten
 - Links between pages are relative (`./engines.md#signed-updates`), so they work on GitHub, and the site rewrites them to routes (`/docs/engines#signed-updates`).
 - Heading anchors use GitHub's slug algorithm, so `#signed-updates` points at the same heading in both places.
 - GitHub alerts (`> [!NOTE]`, `> [!TIP]`, `> [!WARNING]`…) and tables render on both.
-- There's no frontmatter: the page title is the first `# heading`, and the description is the first paragraph.
+- There's no frontmatter: the page title is the first `# heading`, and each page's meta description lives in `docsNav`.
 
-To add a page, create `content/docs/<slug>.md` and add it to `docsNav` in [`src/lib/docs.ts`](./src/lib/docs.ts).
+To add a page, create `content/docs/<slug>.md` and add it to `docsNav` in [`src/lib/docs-nav.ts`](./src/lib/docs-nav.ts), with a meta description under 160 characters.
 
 Code samples should show real output from the library. Run them against a build of clockworktz before committing.
 

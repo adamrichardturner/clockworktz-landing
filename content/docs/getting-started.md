@@ -30,12 +30,12 @@ const { fromUTC, convert, format } = require('clockworktz')
 
 There are two entry points:
 
-| Import             | What it contains                                              | Size (gzipped) |
-| ------------------ | ------------------------------------------------------------- | -------------- |
-| `clockworktz`     | The whole API, using the platform's `Intl` data by default    | ~21 kB         |
-| `clockworktz/tzdb`| A compiled IANA tzdb snapshot for the `embedded-tzdb` engine  | ~30 kB         |
+| Import             | What it contains                                             | Size (gzipped) |
+| ------------------ | ------------------------------------------------------------ | -------------- |
+| `clockworktz`      | The whole API, using the platform's `Intl` data by default   | ~21 kB         |
+| `clockworktz/tzdb` | A compiled IANA tzdb snapshot for the `embedded-tzdb` engine | ~30 kB         |
 
-The package is marked `sideEffects: false`, so bundlers drop anything you don't import. The tzdb snapshot is only included if you import `clockworktz/tzdb`.
+The package is marked `sideEffects: false`, so bundlers drop anything you don't import: an app that only imports `fromUTC` ships about 11 kB minified. The tzdb snapshot is only included if you import `clockworktz/tzdb`.
 
 ## Quick start
 
