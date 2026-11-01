@@ -103,10 +103,10 @@ export async function renderHomeOg() {
     (
       <Frame
         footer={
-          <>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <span>$ npm install clockworktz</span>
             <span style={{ color: colors.fg }}>clockworktz.dev</span>
-          </>
+          </div>
         }
       >
         <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: 84, fontWeight: 600, letterSpacing: -3, lineHeight: 1.04 }}>
